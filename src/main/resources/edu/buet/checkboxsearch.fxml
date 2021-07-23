@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="1030.0" styleClass="list-header-btn-middle" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <CheckBox mnemonicParsing="false" styleClass="list-check-box" text="Forward">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
+      </CheckBox>
+      <CheckBox mnemonicParsing="false" styleClass="list-check-box" text="Midfielder">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
+      </CheckBox>
+      <CheckBox mnemonicParsing="false" styleClass="list-check-box" text="Defender">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
+      </CheckBox>
+      <CheckBox mnemonicParsing="false" styleClass="list-check-box" text="Goalkeeper">
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
+      </CheckBox>
+   </children>
+</HBox>

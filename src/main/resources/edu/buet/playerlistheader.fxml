@@ -9,7 +9,7 @@
       <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
    </padding>
    <children>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="90.0" styleClass="list-header-btn-first">
+      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="70.0" styleClass="list-header-btn-first">
          <children>
             <Label text="No." />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
@@ -19,7 +19,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="300.0" styleClass="list-header-btn-middle">
+      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="360.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Name" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
@@ -29,7 +29,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="245.0" styleClass="list-header-btn-middle">
+      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="220.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Country" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
@@ -79,7 +79,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="50.0" prefWidth="165.0" styleClass="list-header-btn-last">
+      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="50.0" prefWidth="165.0" styleClass="list-header-btn-last" HBox.hgrow="ALWAYS">
          <children>
             <Label text="Search" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">

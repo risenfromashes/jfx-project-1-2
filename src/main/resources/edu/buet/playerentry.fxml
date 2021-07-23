@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" styleClass="list-player-entry" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="70.0" style="0: 0;">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <children>
+                  <Label text="10" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="360.0" style="0: 0;">
+               <children>
+                  <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="60.0" styleClass="player-img">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../football-data/fcm/p158023.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Label text="Lionel Messi" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="220.0" style="0: 0;">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../football-data/fcm/ar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Label text="Argentina">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="140.0" style="0: 0;">
+               <children>
+                  <Label text="RW ST CF" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="100.0" style="0: 0;">
+               <children>
+                  <Label text="34" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="110.0" style="0: 0;">
+               <children>
+                  <Label text="170 cm" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="110.0" style="0: 0;">
+               <children>
+                  <Label text="€560K" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="110.0" style="0: 0;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="alt-btn" text="Sell 🞂">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" styleClass="alt-btn" text="🛈" />
+               </children>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+   </padding>
+</HBox>

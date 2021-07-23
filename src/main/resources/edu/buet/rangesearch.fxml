@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="1030.0" styleClass="list-header-btn-middle" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField styleClass="list-range-field">
+         <HBox.margin>
+            <Insets right="15.0" />
+         </HBox.margin>
+      </TextField>
+      <Label text="to">
+         <HBox.margin>
+            <Insets right="15.0" />
+         </HBox.margin>
+      </Label>
+      <TextField styleClass="list-range-field" />
+   </children>
+</HBox>
