@@ -1,10 +1,11 @@
 package edu.buet;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class PlayerListHeaderController {
@@ -58,6 +59,8 @@ public class PlayerListHeaderController {
     private Label salaryCaret;
     @FXML
     private HBox salaryBox;
+    @FXML
+    private HBox searchBox;
 
     Label[]  carets = new Label[SortField.values().length];
     HBox[]  boxes = new HBox[SortField.values().length];
@@ -111,5 +114,8 @@ public class PlayerListHeaderController {
                 }
             });
         }
+    }
+    ObjectProperty<EventHandler<? super MouseEvent>> searchButtonClickProperty(){
+        return searchBox.onMouseClickedProperty();
     }
 }

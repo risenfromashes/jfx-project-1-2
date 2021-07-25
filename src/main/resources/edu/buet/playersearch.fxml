@@ -10,9 +10,9 @@
       <Insets left="15.0" right="20.0" top="5.0" />
    </padding>
    <children>
-      <ComboBox fx:id="searchCombo" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="51.0" prefWidth="150.0" promptText="Search By" styleClass="list-search-combo" />
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="1030.0" styleClass="list-header-btn-middle" HBox.hgrow="ALWAYS" />
-      <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" styleClass="list-header-btn-last" text="Back">
+      <ComboBox fx:id="searchCombo" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="200.0" promptText="Search By" styleClass="list-search-combo" />
+      <HBox fx:id="searchBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" styleClass="list-header-btn-middle" HBox.hgrow="ALWAYS" />
+      <Button fx:id="backButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" styleClass="list-header-btn-last" text="Back">
          <padding>
             <Insets left="20.0" right="20.0" />
          </padding>

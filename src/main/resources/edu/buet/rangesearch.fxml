@@ -3,14 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="1030.0" styleClass="list-header-btn-middle" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="51.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.RangeSearchController">
     <children>
-        <Spinner styleClass="player-transfer-spinner">
+        <Spinner fx:id="low" editable="true" styleClass="player-transfer-spinner">
             <valueFactory>
-                <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
+                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
             </valueFactory>
             <opaqueInsets>
                 <Insets />
@@ -24,13 +24,16 @@
                 <Insets right="15.0" />
             </HBox.margin>
         </Label>
-        <Spinner styleClass="player-transfer-spinner">
+        <Spinner fx:id="high" editable="true" styleClass="player-transfer-spinner">
             <valueFactory>
-                <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
+                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
             </valueFactory>
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
         </Spinner>
     </children>
+   <padding>
+      <Insets left="10.0" />
+   </padding>
 </HBox>

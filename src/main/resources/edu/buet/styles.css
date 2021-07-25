@@ -213,7 +213,12 @@
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-family: 'noto-sans';
-    -fx-font-weight: bold;
+    -fx-font-weight: normal;
+}
+
+.list-search-combo .list-cell:hover 
+{
+    -fx-background-color: #4b585f;
 }
 .list-search-combo:hover {
     -fx-background-color: #414d5d; 
@@ -344,6 +349,7 @@
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-font-size: 16px;
+    
 }
 
 .login-search-combo .text-field:focused {

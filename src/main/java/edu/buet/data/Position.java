@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Position implements Serializable{
-    public static final int FORWARD = 1 << 0; public static final int MIDFIELDER = 1 << 1;
+public class Position implements Serializable {
+    public static final int FORWARD = 1 << 0;
+    public static final int MIDFIELDER = 1 << 1;
     public static final int DEFENDER = 1 << 2;
     public static final int GOALKEEPER = 1 << 3;
 
@@ -75,13 +76,13 @@ public class Position implements Serializable{
         }
         this.primaryPositions = posFlags;
     }
-    public boolean checkPosition(int pos){
+    public boolean checkPosition(int pos) {
         return (pos & primaryPositions) != 0;
     }
-    public List<String> getFullPosition(){
+    public List<String> getFullPosition() {
         return positionFull;
     }
-    public String getShortPosition(){
+    public String getShortPosition() {
         return positionShort;
     }
 }
