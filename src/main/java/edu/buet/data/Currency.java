@@ -1,8 +1,9 @@
 package edu.buet.data;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Currency {
+public class Currency implements Serializable{
     private String str;
     private int number;
     private static final DecimalFormat format1 = new DecimalFormat("00.0");

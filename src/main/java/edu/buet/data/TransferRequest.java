@@ -1,8 +1,9 @@
 package edu.buet.data;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class TransferRequest{
+public class TransferRequest implements Serializable{
     private final int id;
     private final Player player;
     private final Currency fee;

@@ -1,9 +1,10 @@
 package edu.buet.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Club{
+public class Club implements Serializable{
 //id;name;value;budget;logo-link;
     private final int id;
     private final String name;
@@ -35,6 +36,12 @@ public class Club{
     }
     final public List<Player> getPlayers(){
         return this.players;
+    }
+    final public void addPlayer(Player p){
+        players.add(p);
+    }
+    final public void removePlayer(Player p){
+        players.remove(p);
     }
     final public int getId(){
         return id;

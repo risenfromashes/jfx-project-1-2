@@ -1,8 +1,9 @@
 package edu.buet.data;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Player {
+public class Player implements Serializable{
     public enum Foot {
         LEFT, RIGHT;
         public static Foot fromString(String str) {

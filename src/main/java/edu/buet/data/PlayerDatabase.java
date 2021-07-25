@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -32,6 +33,7 @@ public class PlayerDatabase {
         }
         for (var line : Files.readAllLines(fs.getPath(dir, "players.txt"), cs)) {
             var p = new Player(line, db.clubs, db.countries);
+            p.getClub().addPlayer(p);
             db.players.put(p.getId(), p);
         }
         try {
@@ -49,5 +51,11 @@ public class PlayerDatabase {
         Files.write(fs.getPath(dir, "clubs.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
         Files.write(fs.getPath(dir, "players.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
         Files.write(fs.getPath(dir, "transfers.txt"), transfers.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
+    }
+    public Club getClub(int id){
+        return clubs.get(id);
+    }
+    public List<Club> getClubs(){
+        return clubs.values().stream().collect(Collectors.toList());
     }
 }

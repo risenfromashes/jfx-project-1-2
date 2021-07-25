@@ -1,9 +1,10 @@
 package edu.buet.data;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Position {
+public class Position implements Serializable{
     public static final int FORWARD = 1 << 0; public static final int MIDFIELDER = 1 << 1;
     public static final int DEFENDER = 1 << 2;
     public static final int GOALKEEPER = 1 << 3;
