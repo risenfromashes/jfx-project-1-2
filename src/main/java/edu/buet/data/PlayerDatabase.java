@@ -33,7 +33,8 @@ public class PlayerDatabase {
         }
         for (var line : Files.readAllLines(fs.getPath(dir, "players.txt"), cs)) {
             var p = new Player(line, db.clubs, db.countries);
-            p.getClub().addPlayer(p);
+            var c = p.getClub();
+            if (c != null) c.addPlayer(p);
             db.players.put(p.getId(), p);
         }
         try {
@@ -52,10 +53,10 @@ public class PlayerDatabase {
         Files.write(fs.getPath(dir, "players.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
         Files.write(fs.getPath(dir, "transfers.txt"), transfers.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
     }
-    public Club getClub(int id){
+    public Club getClub(int id) {
         return clubs.get(id);
     }
-    public List<Club> getClubs(){
+    public List<Club> getClubs() {
         return clubs.values().stream().collect(Collectors.toList());
     }
 }

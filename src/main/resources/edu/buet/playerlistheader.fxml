@@ -4,82 +4,82 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.PlayerListHeaderController">
    <padding>
-      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+      <Insets left="15.0" right="20.0" top="5.0" />
    </padding>
    <children>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="70.0" styleClass="list-header-btn-first">
+      <HBox fx:id="noBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="80.0" styleClass="list-header-btn-first">
          <children>
             <Label text="No." />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" />
+                  <Label fx:id="noCaret" text=" ▲" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="360.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="nameBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Name" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" />
+                  <Label fx:id="nameCaret" text=" ▲" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="220.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="countryBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="220.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Country" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" />
+                  <Label fx:id="countryCaret" text=" ▲" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="140.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="positionBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="140.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Position" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="positionCaret" text=" ▲" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="100.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="ageBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Age" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="ageCaret" text=" ▲" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="110.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="heightBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Height" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="heightCaret" text=" ▲" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox maxHeight="-Infinity" prefHeight="50.0" prefWidth="110.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="salaryBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" styleClass="list-header-btn-middle">
          <children>
             <Label text="Salary" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text=" ▲" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="salaryCaret" text=" ▲" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="50.0" prefWidth="165.0" styleClass="list-header-btn-last" HBox.hgrow="ALWAYS">
+      <HBox fx:id="searchBox" alignment="CENTER_LEFT" prefHeight="50.0" styleClass="list-header-btn-last" HBox.hgrow="ALWAYS">
          <children>
             <Label text="Search" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">

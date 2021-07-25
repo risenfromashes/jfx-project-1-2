@@ -4,4 +4,5 @@ module edu.buet {
 
     opens edu.buet to javafx.fxml;
     exports edu.buet;
+    exports edu.buet.data;
 }
