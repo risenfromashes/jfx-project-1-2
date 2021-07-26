@@ -5,261 +5,270 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1280.0" styleClass="body" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" styleClass="body" stylesheets="@styles.css" type="VBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1280.0">
-            <children>
-                <VBox alignment="CENTER">
-                    <children>
+        <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </VBox.margin>
+         <children>
+            <HBox styleClass="player-details-card">
+               <children>
+                  <VBox alignment="CENTER">
+                     <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="180.0" styleClass="player-img-big">
-                            <children>
-                                <ImageView fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../../../../../football-data/fcm/p158023.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
+                           <children>
+                              <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
                         </Pane>
-                        <Label styleClass="player-info-label-big" text="Lionel Messi">
-                            <VBox.margin>
-                                <Insets bottom="10.0" top="15.0" />
-                            </VBox.margin>
+                        <Label fx:id="name" styleClass="player-info-label-big" text="Lionel Messi">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="15.0" />
+                           </VBox.margin>
                         </Label>
                         <HBox alignment="CENTER">
-                            <children>
-                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.5" prefWidth="60.0">
-                                    <children>
-                                        <ImageView fitHeight="37.5" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../../../../../football-data/fcm/ar.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                    <HBox.margin>
-                                        <Insets right="15.0" />
-                                    </HBox.margin>
-                                </Pane>
-                                <Label styleClass="player-info-label-medium" text="Argentina" />
-                            </children>
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.5" prefWidth="60.0">
+                                 <children>
+                                    <ImageView fx:id="flagView" fitHeight="37.5" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Pane>
+                              <Label fx:id="country" styleClass="player-info-label-medium" text="Argentina" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
-                    </children>
-                </VBox>
-                <VBox alignment="CENTER">
-                    <children>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
                         <VBox alignment="CENTER">
-                            <children>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Age">
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="33" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Height">
-                                            <HBox.margin>
-                                                <Insets right="25.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="170 cm" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Weight">
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="72 kg" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </HBox>
-                            </children>
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Age">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="age" styleClass="player-info-label-small" text="33" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Height">
+                                       <HBox.margin>
+                                          <Insets right="25.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="height" styleClass="player-info-label-small" text="170 cm" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Weight">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="weight" styleClass="player-info-label-small" text="72 kg" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
                         </VBox>
                         <VBox alignment="CENTER">
-                            <children>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Jersey Number">
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="10" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Preferred Foot">
-                                            <HBox.margin>
-                                                <Insets right="150.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="Left" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Position">
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="Right Wing" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
-                                    <children>
-                                        <Label styleClass="player-info-label-small" text="Striker">
-                                            <HBox.margin>
-                                                <Insets />
-                                            </HBox.margin>
-                                        </Label>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="5.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_RIGHT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small" text="Centre Forward">
-                                            <HBox.margin>
-                                                <Insets />
-                                            </HBox.margin>
-                                        </Label>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="5.0" />
-                                    </VBox.margin>
-                                </HBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="30.0" />
-                            </VBox.margin>
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Salary">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="salary" styleClass="player-info-label-small" text="€560K" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Value">
+                                       <HBox.margin>
+                                          <Insets right="25.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="value" styleClass="player-info-label-small" text="€103.5M" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
                         </VBox>
                         <VBox alignment="CENTER">
-                            <children>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Salary">
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="€560K" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT">
-                                    <children>
-                                        <Label styleClass="player-info-label-small-bold" text="Value">
-                                            <HBox.margin>
-                                                <Insets right="25.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Label styleClass="player-info-label-small" text="€103.5M" />
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </HBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="25.0" />
-                            </VBox.margin>
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Jersey Number">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="jersyNumber" styleClass="player-info-label-small" text="10" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Preferred Foot">
+                                       <HBox.margin>
+                                          <Insets right="150.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="preferredFoot" styleClass="player-info-label-small" text="Left" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="player-info-label-small-bold" text="Position">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="positionLine0" styleClass="player-info-label-small" text="Right Wing" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="positionLine1" styleClass="player-info-label-small" text="Striker">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT">
+                                 <children>
+                                    <Label fx:id="positionLine2" styleClass="player-info-label-small" text="Centre Forward">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
                         </VBox>
-                    </children>
-                    <HBox.margin>
-                        <Insets left="50.0" />
-                    </HBox.margin>
-                </VBox>
-            </children>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
+            </HBox>
+         </children>
         </HBox>
-        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #4C555B;" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #3D464B;" VBox.vgrow="NEVER">
             <children>
-                  <Label styleClass="player-info-label-small" text="Transfer Fee">
-                      <HBox.margin>
-                          <Insets left="5.0" right="15.0" />
-                      </HBox.margin>
-                  </Label>
-                  <Spinner editable="false" prefHeight="35.0" styleClass="player-transfer-spinner">
-                      <valueFactory>
-                          <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
-                      </valueFactory>
-               <HBox.margin>
-                  <Insets right="15.0" />
-               </HBox.margin>
-                  </Spinner>
-                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="player-info-btn" text="Confirm">
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                        <Label styleClass="player-info-label-smaller" text="Transfer Fee">
+                            <HBox.margin>
+                                <Insets left="5.0" right="15.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                        </Label>
+                        <Spinner editable="false" prefHeight="35.0" styleClass="player-transfer-spinner">
+                            <valueFactory>
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
+                            </valueFactory>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                        </Spinner>
+               </children>
+            </HBox>
+                <Button fx:id="sellOrConfirmButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="alt-btn" text="Confirm">
                     <HBox.margin>
                         <Insets right="15.0" />
                 </HBox.margin></Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="player-info-btn" text="Back">
+            <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="alt-btn" text="Back">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
@@ -268,6 +277,9 @@
             <VBox.margin>
                 <Insets />
             </VBox.margin>
+         <padding>
+            <Insets bottom="15.0" top="15.0" />
+         </padding>
         </HBox>
     </children>
-</VBox>
+</fx:root>

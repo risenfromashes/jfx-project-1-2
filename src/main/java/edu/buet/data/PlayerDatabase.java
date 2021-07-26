@@ -14,7 +14,7 @@ public class PlayerDatabase {
     private Map<Integer, Player> players;
     private Map<Integer, Club> clubs;
     private Map<Integer, Country> countries;
-    private Map<Integer, TransferRequest> transfers;
+    private Map<Integer, TransferOffer> transfers;
     private PlayerDatabase() {
         players = new ConcurrentHashMap<>();
         countries = new ConcurrentHashMap<>();
@@ -39,7 +39,7 @@ public class PlayerDatabase {
         }
         try {
             for (var line : Files.readAllLines(fs.getPath(dir, "transfers.txt"), cs)) {
-                var t = new TransferRequest(line, db.players);
+                var t = new TransferOffer(line, db.players);
                 db.transfers.put(t.getId(), t);
             }
         } catch (IOException e) { //file may not exist

@@ -58,17 +58,17 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="110.0" style="0: 0;">
                <children>
-                  <Label fx:id="salary" text="€560K" />
+                  <Label fx:id="salaryOrFee" text="€560K" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="75.0" style="0: 0;" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" styleClass="alt-btn" text="Sell 🞂">
+                  <Button fx:id="sellOrBuyButton" mnemonicParsing="false" styleClass="alt-btn" text="Sell 🞂">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="alt-btn" text="🛈" />
+                  <Button fx:id="infoButton" mnemonicParsing="false" styleClass="alt-btn" text="🛈" />
                </children>
             </HBox>
          </children>

@@ -3,11 +3,15 @@ package edu.buet;
 import java.io.IOException;
 
 import edu.buet.data.Player;
+import javafx.beans.property.ObjectProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class PlayerEntry extends HBox{
@@ -24,11 +28,15 @@ public class PlayerEntry extends HBox{
     @FXML
     private Label height;
     @FXML
-    private Label salary;
+    private Label salaryOrFee;
     @FXML
     private ImageView playerImageView;
     @FXML
     private ImageView flagImageView;
+    @FXML
+    private Button sellOrBuyButton;
+    @FXML
+    private Button infoButton;
 
     private Image playerImage, flagImage;
     private Player player;
@@ -52,7 +60,7 @@ public class PlayerEntry extends HBox{
         position.setText(player.getPosition().getShortPosition());
         age.setText(player.getAge() + "");
         height.setText(player.getHeight() + " cm");
-        salary.setText(player.getWeeklySalary().getString());
+        salaryOrFee.setText(player.getWeeklySalary().getString());
         playerImageView.setCache(true);
         playerImageView.setSmooth(false);
         flagImageView.setCache(true);
@@ -62,7 +70,19 @@ public class PlayerEntry extends HBox{
         playerImageView.setImage(playerImage);
         flagImageView.setImage(flagImage);
     }
+    ObjectProperty<EventHandler<? super MouseEvent>> sellOrBuyButtonClickedProperty(){
+        return sellOrBuyButton.onMouseClickedProperty();
+    }
+    ObjectProperty<EventHandler<? super MouseEvent>> infoButtonClickedProperty(){
+        return infoButton.onMouseClickedProperty();
+    }
     public Player getPlayer(){
         return player;
+    }
+    Image getPlayerImage(){
+        return playerImage; 
+    }
+    Image getFlagImage(){
+        return flagImage; 
     }
 }

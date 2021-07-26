@@ -10,12 +10,12 @@
 
 <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.PrimaryController">
    <children>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="99.0" styleClass="navbar">
+      <HBox alignment="CENTER_LEFT" fillHeight="false" minHeight="-Infinity" styleClass="navbar">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
-            <ImageView fx:id="clubLogo" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="clubLogo" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -36,7 +36,7 @@
                   <Insets left="15.0" right="15.0" />
                </HBox.margin>
             </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
                   <Button fx:id="playersButton" mnemonicParsing="false" styleClass="navbar-btn-active" text="Players" textFill="WHITE">
                      <HBox.margin>
@@ -68,7 +68,7 @@
                         <Font name="Noto Sans Regular" size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="15.0" />
+                        <Insets />
                      </HBox.margin>
                   </Button>
                </children>
@@ -77,6 +77,9 @@
                </HBox.margin>
             </HBox>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+         </padding>
       </HBox>
       <VBox fx:id="body" styleClass="body" VBox.vgrow="ALWAYS">
          <VBox.margin>

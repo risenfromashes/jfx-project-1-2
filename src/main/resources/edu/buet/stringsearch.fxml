@@ -5,6 +5,6 @@
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="51.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.StringSearchController">
 <children>
-    <TextField fx:id="searchField" maxWidth="965.0" minHeight="-Infinity" prefHeight="50.0" promptText="Search by name..." styleClass="list-search-field" HBox.hgrow="ALWAYS" />
+    <TextField fx:id="searchField" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="965.0" promptText="Search by name..." styleClass="list-search-field" HBox.hgrow="ALWAYS" />
 </children>
 </HBox>

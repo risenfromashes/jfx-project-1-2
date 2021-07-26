@@ -118,4 +118,9 @@ public class PlayerListHeaderController {
     ObjectProperty<EventHandler<? super MouseEvent>> searchButtonClickProperty(){
         return searchBox.onMouseClickedProperty();
     }
+    void resetCarets(){
+        for (var sortField : SortField.values()) {
+            carets[sortField.value()].setText("");
+        }
+    }
 }

@@ -3,11 +3,10 @@ package edu.buet;
 import java.io.IOException;
 
 import edu.buet.data.Club;
-import edu.buet.data.Player;
+//import edu.buet.data.Player;
 import edu.buet.data.PlayerDatabase;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,11 +39,17 @@ public class PrimaryController {
     @FXML
     private VBox body;
 
+    private Parent header, search;
+    private PlayerListHeaderController headerController;
+    private PlayerSearchController searchController;
+    private ListView<PlayerEntry> playerListView;
+    private ObservableList<PlayerEntry> playerList;
 
     public PrimaryController() throws IOException {
         db = PlayerDatabase.parseFile("data/");
         club = db.getClub(4);
     }
+
     @FXML
     void initialize() throws IOException {
         clubLogo.setCache(true);
@@ -53,25 +58,48 @@ public class PrimaryController {
         clubLogo.setImage(clubLogoImage);
         clubName.setText(club.getName());
         clubBudget.setText(club.getBudget().getString());
-        populatePlayers();
-    }
-    private void populatePlayers() throws IOException {
         var headerLoader = new FXMLLoader(App.class.getResource("playerlistheader.fxml"));
-        Parent header = headerLoader.load();
-        PlayerListHeaderController headerController = headerLoader.getController();
-        body.getChildren().add(header);
         var searchLoader = new FXMLLoader(App.class.getResource("playersearch.fxml"));
-        Parent search = searchLoader.load();
-        PlayerSearchController searchController = searchLoader.getController();
+        header = headerLoader.load();
+        headerController = headerLoader.getController();
+        search = searchLoader.load();
+        searchController = searchLoader.getController();
+        populatePlayers();
+        setupHeader();
+        setupSearch();
+        showHeader(false);
+        showPlayers();
+    }
 
-        var playerList = FXCollections.<PlayerEntry>observableArrayList();
-        var playerListView = new ListView<>(playerList);
-        VBox.setVgrow(playerListView, Priority.ALWAYS);
-        playerListView.setMaxHeight(Double.MAX_VALUE);
-        for (var player : club.getPlayers()) {
-            playerList.add(new PlayerEntry(player));
-        }
+    private void showInfo(PlayerEntry entry) {
+        body.getChildren().clear();
+        var p = new PlayerInfo(entry) ;
+        p.backButtonClickedProperty().set( ev -> {
+            if (ev.getButton() == MouseButton.PRIMARY) {
+                showHeader(true);
+                showPlayers();
+            }
+        });
+        body.getChildren().add(p);
+    }
+
+    private void showPlayers() {
+        playerListView.setItems(playerList);
         body.getChildren().add(playerListView);
+    }
+
+    private void showHeader(boolean removeFirst) {
+        if (removeFirst) body.getChildren().remove(0);
+        body.getChildren().add(0, header);
+        headerController.resetCarets();
+    }
+
+    private void showSearch(boolean removeFirst) {
+        if (removeFirst) body.getChildren().remove(0);
+        body.getChildren().add(0, search);
+    }
+
+    private void setupHeader() {
         headerController.stateProperty().addListener( (ev, s0, state) -> {
             playerList.sort((p1_, p2_) -> {
                 var p1 = p1_.getPlayer();
@@ -109,12 +137,34 @@ public class PrimaryController {
         });
         headerController.searchButtonClickProperty().set( ev -> {
             if (ev.getButton() == MouseButton.PRIMARY) {
-                body.getChildren().remove(0);
-                body.getChildren().add(0, search);
+                showSearch(true);
             }
         });
+    }
+
+    private void setupSearch() {
         searchController.queryProperty().addListener( (ev, o1, o2) -> {
             playerListView.setItems(playerList.filtered( p -> o2.match(p.getPlayer())));
         });
+        searchController.backButtonClickedProperty().set( ev -> {
+            if (ev.getButton() == MouseButton.PRIMARY) {
+                showHeader(true);
+                showPlayers();
+            }
+        });
+    }
+
+    private void populatePlayers() throws IOException {
+        playerList = FXCollections.synchronizedObservableList(FXCollections.<PlayerEntry>observableArrayList());
+        playerListView = new ListView<>(playerList);
+        VBox.setVgrow(playerListView, Priority.ALWAYS);
+        playerListView.setMaxHeight(Double.MAX_VALUE);
+        for (var player : club.getPlayers()) {
+            var p = new PlayerEntry(player);
+            p.infoButtonClickedProperty().set( e -> {
+                showInfo(p);
+            });
+            playerList.add(p);
+        }
     }
 }

@@ -3,16 +3,16 @@ package edu.buet.data;
 import java.io.Serializable;
 import java.util.Map;
 
-public class TransferRequest implements Serializable{
+public class TransferOffer implements Serializable{
     private final int id;
     private final Player player;
     private final Currency fee;
-    public TransferRequest(int id, Player player, Currency fee){
+    public TransferOffer(int id, Player player, Currency fee){
         this.id = id;
         this.player = player;
         this.fee = fee;
     }
-    public TransferRequest(String line, Map<Integer, Player> players){
+    public TransferOffer(String line, Map<Integer, Player> players){
         var props = line.strip().split(";");
         this.id = Integer.parseInt(props[0]);
         this.player = players.get(Integer.parseInt(props[1]));  

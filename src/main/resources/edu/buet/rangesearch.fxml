@@ -8,9 +8,14 @@
 
 <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="51.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.RangeSearchController">
     <children>
+      <Label text="€">
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
         <Spinner fx:id="low" editable="true" styleClass="player-transfer-spinner">
             <valueFactory>
-                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
+                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1000" max="1000000" min="0" />
             </valueFactory>
             <opaqueInsets>
                 <Insets />
@@ -24,9 +29,14 @@
                 <Insets right="15.0" />
             </HBox.margin>
         </Label>
+      <Label text="€">
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </Label>
         <Spinner fx:id="high" editable="true" styleClass="player-transfer-spinner">
             <valueFactory>
-                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
+                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1000" max="1000000" min="0" />
             </valueFactory>
             <opaqueInsets>
                 <Insets />

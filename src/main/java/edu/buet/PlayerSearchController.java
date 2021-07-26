@@ -6,15 +6,15 @@ import java.util.stream.Collectors;
 
 import edu.buet.data.Player;
 import edu.buet.data.Position;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 
@@ -80,8 +80,8 @@ public class PlayerSearchController {
         }
         public boolean match(Player player) {
             var m0 = player.getPosition().checkPosition(positionFlags);
-            var m1 = nameQuery.strip().isEmpty() || FuzzySearch.tokenSortPartialRatio(nameQuery, player.getAltName()) > 80;
-            var m2 = countryQuery.strip().isEmpty() || FuzzySearch.tokenSortPartialRatio(countryQuery, player.getCountry().getAltName()) > 80;
+            var m1 = nameQuery.strip().isEmpty() || FuzzySearch.tokenSetPartialRatio(nameQuery, player.getAltName()) > 70;
+            var m2 = countryQuery.strip().isEmpty() || FuzzySearch.tokenSetPartialRatio(countryQuery, player.getCountry().getAltName()) > 70;
             var m3 = player.getWeeklySalary().getNumber() >= salaryMin && player.getWeeklySalary().getNumber() <= salaryMax;
             return m0 && m1 && m2 && m3;
         }
@@ -104,6 +104,9 @@ public class PlayerSearchController {
     }
     ObjectProperty<Query> queryProperty(){
         return queryProperty;
+    }
+    ObjectProperty<EventHandler<? super MouseEvent>> backButtonClickedProperty(){
+        return backButton.onMouseClickedProperty();
     }
     @FXML
     void initialize() throws IOException {

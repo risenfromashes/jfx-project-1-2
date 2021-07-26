@@ -3,6 +3,7 @@
  }
 
 .body {
+    -fx-base:  #50595F;
     -fx-background-color: #50595F;
 }
 
@@ -101,11 +102,11 @@
 }
 .navbar-btn:hover {
     -fx-background-color: #363C3F;
-    -fx-border-color: white;
+/*     -fx-border-color: white; */
 }
 .navbar-btn:pressed {
     -fx-background-color: #4a5256;
-    -fx-border-color: white;
+/*     -fx-border-color: white; */
 }
 .navbar-btn-active {
     -fx-background-color: #363C3F;
@@ -116,11 +117,11 @@
 }
 .navbar-btn-active:hover{
     -fx-background-color: #363C3F;
-    -fx-border-color: white;
+/*     -fx-border-color: white; */
 }
 .navbar-btn-active:pressed {
     -fx-background-color: #4a5256;
-    -fx-border-color: white;
+/*     -fx-border-color: white; */
 }
 .list-header-btn-first {
     -fx-background-color: #394348;
@@ -163,6 +164,26 @@
     -fx-background-color: #474f5d; 
 /*     -fx-border-color:  white; */
 } 
+
+.list-header-search-box {
+    -fx-background-color: #394348;
+    -fx-border-color:  black;
+    -fx-border-style: solid;
+    -fx-border-width: 0.5px;
+    -fx-background-radius: 0px 0px 0px 0px;
+    -fx-border-radius: 0px 0px 0px 0px;
+    -fx-alignment: center-left;
+    -fx-padding: 10px 10px 10px 10px;
+}
+.list-header-search-box:hover {
+    -fx-border-width: 1px;
+    -fx-border-color:  white;
+}
+.list-header-btn-middle:hover {
+    -fx-background-color: #474f5d; 
+/*     -fx-border-color:  white; */
+} 
+
 .list-header-btn-last {
     -fx-text-fill: white;
     -fx-font-size: 16px;
@@ -219,6 +240,11 @@
 .list-search-combo .list-cell:hover 
 {
     -fx-background-color: #4b585f;
+}
+.list-search-combo .arrow
+{
+    -fx-background-color: white;
+    -fx-border-color: white;
 }
 .list-search-combo:hover {
     -fx-background-color: #414d5d; 
@@ -297,6 +323,7 @@
     -fx-background-radius: 5px;
 }
 .alt-btn {
+    -fx-font-family: 'noto-sans';
     -fx-background-color: #515B5D;
     -fx-text-fill: white;
     -fx-font-weight: normal;
@@ -450,14 +477,14 @@
     -fx-font-weight: normal;
 }
 
-.player-info-btn {    
-    -fx-background-color: #687377;
+.player-info-label-smaller {
+    -fx-font-family: 'noto-sans';
     -fx-text-fill: white;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 10px;
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
     -fx-font-weight: normal;
 }
+
+
 
 .player-transfer-spinner {
     -fx-base: transparent;
@@ -503,4 +530,12 @@
 }
 .club-search-suggestion-entry:hover {
     -fx-background-color: #4e636a;
+}
+
+.player-details-card {
+    -fx-background-color: #3a4143;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 10px;
 }

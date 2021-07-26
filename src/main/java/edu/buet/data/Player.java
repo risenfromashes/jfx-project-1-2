@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class Player implements Serializable{
+
     public enum Foot {
         LEFT, RIGHT;
         public static Foot fromString(String str) {
@@ -14,13 +15,13 @@ public class Player implements Serializable{
             throw new RuntimeException("Invalid value for Foot");
         }
     }
+
     private final int id;
     private final String name;
     private final String altName;
     private final int age;
     private final Position position;
     private final Foot preferredFoot;
-    private Club club;
     private final Country country;
     private final int height;
     private final int weight;
@@ -28,6 +29,9 @@ public class Player implements Serializable{
     private final Currency weeklySalary;
     private final Currency value;
     private final String imageUrl;
+    private Club club;
+    private TransferOffer transferOffer;
+
     public Player(int id,
                   String name,
                   String altName,
@@ -56,7 +60,9 @@ public class Player implements Serializable{
         this.weeklySalary = weeklySalary;
         this.value = value;
         this.imageUrl = imageUrl;
+        this.transferOffer = null;
     }
+
     public Player(String line, Map<Integer, Club> clubs, Map<Integer, Country> countries) {
         var props = line.strip().split(";");
         this.id = Integer.parseInt(props[0]);
@@ -74,6 +80,7 @@ public class Player implements Serializable{
         this.value = new Currency(props[12]);
         this.imageUrl = props[13];
     }
+
     public String toString() {
 //id;name;alt-name;age;position;preferred-foot;club-id;country-id;height;weight;number;salary;value;image-link;
         var sb = new StringBuilder();
@@ -106,6 +113,13 @@ public class Player implements Serializable{
         sb.append(imageUrl);
         sb.append(';');
         return sb.toString();
+    }
+
+    final public void setTransferOffer(TransferOffer transfer){
+        this.transferOffer = transfer;
+    }
+    final public TransferOffer getTransferOffer(){
+        return this.transferOffer;
     }
 
     final public int getId() {
