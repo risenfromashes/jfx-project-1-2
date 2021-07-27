@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<fx:root alignment="CENTER_LEFT" styleClass="botton-bar-error" stylesheets="@styles.css" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="message" text="A very long warning message" />
+   </children>
+   <padding>
+      <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
+   </padding>
+</fx:root>

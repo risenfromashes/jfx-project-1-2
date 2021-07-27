@@ -5,59 +5,62 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="body" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.LoginScreenController">
+<VBox fx:id="body" alignment="CENTER" styleClass="body" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.LoginScreenController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="350.0" prefWidth="400.0" styleClass="login-container">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER" text="⚽ Login as Club" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <VBox>
+            <VBox fx:id="loginBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" styleClass="login-container" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Club Name">
+                  <Label alignment="CENTER" text="⚽ Login as Club" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="clubNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" styleClass="login-password-field" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="15.0" right="15.0" />
-               </padding>
-            </VBox>
-            <VBox prefWidth="100.0">
-               <children>
-                  <Label text="Password">
+                  <VBox>
+                     <children>
+                        <Label text="Club Name">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="clubNameField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" styleClass="login-password-field" />
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" />
+                        <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="passwordField" prefHeight="35.0" styleClass="login-password-field" />
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefWidth="100.0">
+                     <children>
+                        <Label text="Password">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <PasswordField fx:id="passwordField" prefHeight="35.0" styleClass="login-password-field" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" styleClass="login-btn" text="Login">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
                <padding>
-                  <Insets left="15.0" right="15.0" />
+                  <Insets top="45.0" />
                </padding>
-            </VBox>
-            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" styleClass="login-btn" text="Login">
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                </VBox.margin>
-            </Button>
+            </VBox>
          </children>
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-         <padding>
-            <Insets top="45.0" />
-         </padding>
       </VBox>
    </children>
-</HBox>
+</VBox>

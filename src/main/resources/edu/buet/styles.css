@@ -95,32 +95,31 @@
 
 .navbar-btn {
     -fx-background-color: #252B2D;
-    -fx-border-color: #252B2D;
-    -fx-border-style: solid;
+    -fx-background-radius: 0px;
     -fx-border-radius: 0px;
-    -fx-border-width: 0.5px;
+    -fx-border-width: 0px;
 }
 .navbar-btn:hover {
     -fx-background-color: #363C3F;
 /*     -fx-border-color: white; */
 }
+
 .navbar-btn:pressed {
-    -fx-background-color: #4a5256;
+/*     -fx-background-color: #4a5256; */
 /*     -fx-border-color: white; */
 }
 .navbar-btn-active {
     -fx-background-color: #363C3F;
-    -fx-border-color: #252B2D;
-    -fx-border-style: solid;
+    -fx-background-radius: 0px;
     -fx-border-radius: 0px;
-    -fx-border-width: 0.5px;
+    -fx-border-width: 0px;
 }
 .navbar-btn-active:hover{
     -fx-background-color: #363C3F;
 /*     -fx-border-color: white; */
 }
 .navbar-btn-active:pressed {
-    -fx-background-color: #4a5256;
+/*     -fx-background-color: #4a5256; */
 /*     -fx-border-color: white; */
 }
 .list-header-btn-first {
@@ -538,4 +537,39 @@
     -fx-border-style: solid;
     -fx-border-width: 0.5px;
     -fx-border-radius: 10px;
+}
+.player--details-bottom-bar {
+    -fx-background-color: #3D464B;
+}
+.botton-bar-info {
+    -fx-background-color: #3D464B;
+}
+
+.botton-bar-info Label{
+    -fx-font-family: 'noto-sans';
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+}
+
+.botton-bar-warning {
+    -fx-background-color: #a15100;
+}
+
+.botton-bar-warning Label{
+    -fx-font-family: 'noto-sans';
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+}
+
+.botton-bar-error {
+    -fx-background-color: #830000;
+}
+
+.botton-bar-error Label{
+    -fx-font-family: 'noto-sans';
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }

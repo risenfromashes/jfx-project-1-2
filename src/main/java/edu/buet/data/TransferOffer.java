@@ -1,33 +1,40 @@
 package edu.buet.data;
 
 import java.io.Serializable;
-import java.util.Map;
 
-public class TransferOffer implements Serializable{
-    private final Player player;
+public class TransferOffer implements Serializable {
+    private final int playerId;
+    private final int sellingClubId;
     private final Currency fee;
-    public TransferOffer(Player player, Currency fee){
-        this.player = player;
+    public TransferOffer(int playerId, int sellingClubId, Currency fee) {
+        this.playerId = playerId;
+        this.sellingClubId = sellingClubId;
         this.fee = fee;
     }
-    public TransferOffer(String line, Map<Integer, Player> players){
+    public TransferOffer(String line) {
         var props = line.strip().split(";");
-        this.player = players.get(Integer.parseInt(props[0]));  
-        this.fee = new Currency(props[1]);
+        this.playerId = Integer.parseInt(props[0]);
+        this.sellingClubId = Integer.parseInt(props[1]);
+        this.fee = new Currency(props[2]);
     }
     @Override
-    public String toString(){
+    public String toString() {
         var sb = new StringBuilder();
-        sb.append(player.getId());
+        sb.append(playerId);
+        sb.append(';');
+        sb.append(sellingClubId);
         sb.append(';');
         sb.append(fee.getString());
         sb.append(';');
         return sb.toString();
     }
-    final public Player getPlayer(){
-        return this.player;
+    final public int getPlayerId() {
+        return this.playerId;
     }
-    final public Currency getFee(){
+    final public Currency getFee() {
         return this.fee;
+    }
+    final public int getSellingClubId(){
+        return this.sellingClubId;
     }
 }

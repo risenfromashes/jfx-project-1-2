@@ -3,6 +3,7 @@ package edu.buet;
 import java.io.IOException;
 import java.util.TreeSet;
 
+import edu.buet.data.Player;
 import edu.buet.data.PlayerDatabase;
 import edu.buet.messages.ClubListRequest;
 import edu.buet.messages.ClubListResponse;
@@ -29,6 +30,7 @@ public class AppServer {
                 System.out.println("Client Connected");
             })
             .on(ClubListRequest.class, (o, s) -> {
+                System.out.println("listRequest");
                 s.send(ClubListResponse.successMessage(db.getClubs()));
             })
             .on(LoginRequest.class, (o, s) -> {
@@ -37,6 +39,7 @@ public class AppServer {
                     if (c != null) {
                         if (s.getAttachment() == null && !connectedClubs.contains(c.getId())) {
                             s.setAttachment(c.getId());
+                            connectedClubs.add(c.getId());
                             s.send(LoginResponse.successMessage(c));
                         } else {
                             s.send(LoginResponse.errorMessage("Club already logged in"));
@@ -57,23 +60,26 @@ public class AppServer {
                 }
             })
             .on(TransferOfferRequest.class, (o, s) -> {
+                System.out.println("Transfer offer requested");
                 var attch = s.getAttachment();
                 if (attch != null && connectedClubs.contains(attch)) {
                     if (!db.hasTransferOffer(o.get().playerId)) {
-                        var offer = db.createTransferOffer(o.get().playerId, o.get().fee);
+                        var player = db.getPlayer(o.get().playerId);
+                        var offer = db.createTransferOffer(o.get().playerId, (Integer)attch, o.get().fee);
                         db.addTransferOffer(offer);
                         s.send(TransferOfferResponse.successMessage());
                         for (var socket : server.getSockets()) {
                             var clubId = socket.getAttachment();
                             if (clubId != null && connectedClubs.contains(clubId)) {
-                                socket.send(NotifyTransfer.addMessage(offer));
+                                System.out.println("Notifying transfer");
+                                socket.notify(NotifyTransfer.addMessage(player, 0.f));
                             }
                         }
                     } else {
                         s.send(TransferOfferResponse.errorMessage("Player already has transfer offer"));
                     }
                 } else {
-                    s.send(LogoutResponse.errorMessage("Not logged in"));
+                    s.send(TransferOfferResponse.errorMessage("Not logged in"));
                 }
             })
             .on(TransferRequest.class, (o, s) -> {
@@ -85,23 +91,25 @@ public class AppServer {
                         var offer = db.removeTransferOffer(playerId);
                         var prevClub = player.getClub();
                         var club = db.getClub((Integer)attch);
+                        player.setClub(club);
                         prevClub.getBalance().add(offer.getFee());
                         club.getBalance().substract(offer.getFee());
                         s.send(TransferResponse.successMessage());
+                        //notify connected sockets
                         for (var socket : server.getSockets()) {
                             var clubId = socket.getAttachment();
                             if (clubId != null && connectedClubs.contains(clubId)) {
                                 if (clubId.equals(club.getId())) {
-                                    socket.send(NotifyTransfer.removeMessage(offer, -offer.getFee().getNumber()));
+                                    socket.notify(NotifyTransfer.addMessage(player, -offer.getFee().getNumber()));
                                 } else if (clubId.equals(prevClub.getId())) {
-                                    socket.send(NotifyTransfer.removeMessage(offer, offer.getFee().getNumber()));
+                                    socket.notify(NotifyTransfer.removeMessage(player, offer.getFee().getNumber()));
                                 } else {
-                                    socket.send(NotifyTransfer.removeMessage(offer));
+                                    socket.notify(NotifyTransfer.removeMessage(player, 0.f));
                                 }
                             }
                         }
                     } else {
-                        s.send(TransferResponse.errorMessage("Invalid transfer request"));
+                        s.send(TransferResponse.errorMessage("Invalid transfer request or player already transferred"));
                     }
                 } else {
                     s.send(LogoutResponse.errorMessage("Not logged in"));
@@ -127,7 +135,7 @@ public class AppServer {
                     connectedClubs.remove((Integer)attch);
                     System.out.println("Client Disconnected");
                 }
-            });
+            }).run(3001);
         } catch (IOException e) {
             System.out.println("Couldn't create server");
         }

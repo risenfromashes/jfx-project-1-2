@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class PlayerEntry extends HBox{
+public class PlayerEntry extends HBox {
     @FXML
     private Label jerseyNumber;
     @FXML
@@ -53,7 +53,7 @@ public class PlayerEntry extends HBox{
         }
     }
     @FXML
-    void initialize(){
+    void initialize() {
         jerseyNumber.setText(player.getJerseyNumber() + "");
         name.setText(player.getName());
         country.setText(player.getCountry().getName());
@@ -70,19 +70,25 @@ public class PlayerEntry extends HBox{
         playerImageView.setImage(playerImage);
         flagImageView.setImage(flagImage);
     }
-    ObjectProperty<EventHandler<? super MouseEvent>> sellOrBuyButtonClickedProperty(){
-        return sellOrBuyButton.onMouseClickedProperty();
+    Button sellOrBuyButton() {
+        return sellOrBuyButton;
     }
-    ObjectProperty<EventHandler<? super MouseEvent>> infoButtonClickedProperty(){
-        return infoButton.onMouseClickedProperty();
+    Button infoButton() {
+        return infoButton;
     }
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
-    Image getPlayerImage(){
-        return playerImage; 
+    Image getPlayerImage() {
+        return playerImage;
     }
-    Image getFlagImage(){
-        return flagImage; 
+    Image getFlagImage() {
+        return flagImage;
+    }
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof PlayerEntry)
+            return player.getId() == ((PlayerEntry)other).getPlayer().getId();
+        return false;
     }
 }

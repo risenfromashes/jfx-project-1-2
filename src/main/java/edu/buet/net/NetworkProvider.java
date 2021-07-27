@@ -89,38 +89,17 @@ public abstract class NetworkProvider {
         }
         return null;
     }
+    public void clearHandlers() {
+        handlers.clear();
+    }
     protected abstract class Worker implements Runnable {
         SocketHandle socket;
         public Worker(SocketHandle socket) {
             this.socket = socket;
         }
-        public void write() throws IOException {
-            while (socket.queuedMessageCount() > 0) {
-                var messageout = socket.dequeMessage();
-                socket.out.writeUnshared(messageout.toMessage());
-                if (messageout.isResponseVoid()) {
-                    socket.complete(messageout);
-                    socket.removeSession(messageout.sessionId);
-                } else {
-                    socket.keepSession(messageout);
-                }
-            }
-        }
-        public void read() throws IOException, ClassNotFoundException {
-            var messagein = (Message)socket.in.readObject();
-            if (socket.hasSession(messagein.sessionId)) {
-                var session = socket.getSession(messagein.sessionId);
-                socket.complete(session, messagein);
-            } else {
-                var handler = getHandler(messagein.getType());
-                if (handler != null) {
-                    socket.handle(messagein, handler);
-                }
-            }
-        }
         public void loop() throws IOException, ClassNotFoundException {
-            write();
-            read();
+            socket.write();
+            socket.read();
         }
         public abstract void run();
     }
@@ -136,7 +115,7 @@ public abstract class NetworkProvider {
         handlers.put(type, h);
         return this;
     }
-    public synchronized Collection<SocketHandle> getSockets(){
+    public synchronized Collection<SocketHandle> getSockets() {
         return sockets.values();
     }
 }

@@ -54,7 +54,7 @@ public class Server extends NetworkProvider {
         executor.submit(()-> {
             try {
                 while (!Thread.interrupted()) {
-                    var socket = new SocketHandle(listener.accept());
+                    var socket = new SocketHandle(this, listener.accept());
                     executor.submit(new Worker(socket));
                 }
             } catch (IOException e) {

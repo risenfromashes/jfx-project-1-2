@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ public class PlayerDatabase {
         players = new ConcurrentHashMap<>();
         countries = new ConcurrentHashMap<>();
         clubs = new ConcurrentHashMap<>();
+        transfers = new ConcurrentHashMap<>();
     }
     public static PlayerDatabase parseFile(String dir) throws IOException {
         var db = new PlayerDatabase();
@@ -39,8 +41,9 @@ public class PlayerDatabase {
         }
         try {
             for (var line : Files.readAllLines(fs.getPath(dir, "transfers.txt"), cs)) {
-                var t = new TransferOffer(line, db.players);
-                db.transfers.put(t.getPlayer().getId(), t);
+                var t = new TransferOffer(line);
+                db.players.get(t.getPlayerId()).setTransfer(t);
+                db.transfers.put(t.getPlayerId(), t);
             }
         } catch (IOException e) { //file may not exist
         }
@@ -59,11 +62,11 @@ public class PlayerDatabase {
     public synchronized Club getClub(int id) {
         return clubs.get(id);
     }
-    public synchronized Collection<Club> getClubs() {
-        return clubs.values();
+    public synchronized List<Club> getClubs() {
+        return clubs.values().stream().collect(Collectors.toList());
     }
-    public synchronized Collection<TransferOffer> getTransfers() {
-        return transfers.values();
+    public synchronized List<Player> getTransfers() {
+        return transfers.values().stream().map(t -> players.get(t.getPlayerId())).collect(Collectors.toList());
     }
     public synchronized TransferOffer getTransferOffer(int playerId) {
         return transfers.get(playerId);
@@ -71,13 +74,15 @@ public class PlayerDatabase {
     public synchronized boolean hasTransferOffer(int playerId) {
         return getTransferOffer(playerId) != null;
     }
-    public TransferOffer createTransferOffer(int playerId, float fee) {
-        return new TransferOffer(players.get(playerId), new Currency(fee));
+    public TransferOffer createTransferOffer(int playerId, int sellingClub, float fee) {
+        return new TransferOffer(playerId, sellingClub, new Currency(fee));
     }
     public synchronized TransferOffer addTransferOffer(TransferOffer offer) {
-        return transfers.put(offer.getPlayer().getId(), offer);
+        players.get(offer.getPlayerId()).setTransfer(offer);
+        return transfers.put(offer.getPlayerId(), offer);
     }
     public synchronized TransferOffer removeTransferOffer(int playerId) {
+        players.get(playerId).setTransfer(null);
         return transfers.remove(playerId);
     }
 }

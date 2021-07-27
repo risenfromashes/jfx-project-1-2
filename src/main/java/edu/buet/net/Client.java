@@ -3,6 +3,7 @@ package edu.buet.net;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -51,9 +52,41 @@ public class Client extends NetworkProvider {
         this.closeHandler = this.closeHandler.andThen(handler);
         return this;
     }
+    public synchronized boolean isConnected() {
+        return !sockets.isEmpty();
+    }
     public SocketHandle connect(InetAddress address, int port) throws IOException {
-        var socket = new SocketHandle(address, port);
+        var socket = new SocketHandle(this, address, port);
         executor.submit(new Worker(socket));
         return socket;
+    }
+    public CompletableFuture<SocketHandle> connectAsync(InetAddress address, int port, boolean newSocket, boolean retry) {
+        var future = new CompletableFuture<SocketHandle>();
+        executor.submit(()-> {
+            if (!newSocket) {
+                for (var socket : sockets.values()) {
+                    if (socket.hasSameAddress(address, port)) {
+                        future.complete(socket);
+                        return;
+                    }
+                }
+            }
+            do {
+                try {
+                    var socket = connect(address, port);
+                    future.complete(socket);
+                    return;
+                } catch (IOException e) {
+                    continue;
+                }
+            } while (!Thread.interrupted() && retry);
+        });
+        return future;
+    }
+    public CompletableFuture<SocketHandle> connectAsync(InetAddress address, int port) {
+        return connectAsync(address, port, false, true);
+    }
+    public void shutdown() {
+        executor.shutdownNow();
     }
 }

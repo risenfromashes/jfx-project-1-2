@@ -26,4 +26,7 @@ abstract class MessageBase<T> implements Serializable {
     public boolean success() {
         return success;
     }
+    public String getMessage() {
+        return this.message;
+    }
 }

@@ -8,83 +8,83 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.buet.PrimaryController">
-   <children>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" minHeight="-Infinity" styleClass="navbar">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <children>
-            <ImageView fx:id="clubLogo" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <Label fx:id="clubName" minWidth="-Infinity" text="FC Barcelona" textFill="WHITE">
-               <font>
-                  <Font name="Noto Sans Bold" size="22.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="15.0" right="15.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="clubBudget" minWidth="-Infinity" text="€180.5M" textFill="WHITE">
-               <font>
-                  <Font name="Noto Sans Bold" size="22.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="15.0" right="15.0" />
-               </HBox.margin>
-            </Label>
-            <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button fx:id="playersButton" mnemonicParsing="false" styleClass="navbar-btn-active" text="Players" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="Noto Sans Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="transferListButton" mnemonicParsing="false" style="-fx-border-radius: 0px;" styleClass="navbar-btn" text="Transfer List" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="Noto Sans Regular" size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="15.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" styleClass="logout-btn" text="Logout ⏻" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="Noto Sans Regular" size="18.0" />
-                     </font>
-                     <HBox.margin>
+<fx:root alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styles.css" type="VBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox alignment="CENTER_LEFT" fillHeight="false" minHeight="-Infinity" styleClass="navbar">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <children>
+                <ImageView fx:id="clubLogo" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Label fx:id="clubName" minWidth="-Infinity" text="FC Barcelona" textFill="WHITE">
+                    <font>
+                        <Font name="Noto Sans Bold" size="22.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </HBox.margin>
+                </Label>
+                <Label fx:id="clubBalance" minWidth="-Infinity" text="€180.5M" textFill="WHITE">
+                    <font>
+                        <Font name="Noto Sans Bold" size="22.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </HBox.margin>
+                </Label>
+                <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Button fx:id="playersButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="navbar-btn-active" text="Players" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="15.0" />
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="Noto Sans Regular" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="transferListButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="50.0" style="-fx-border-radius: 0px;" styleClass="navbar-btn" text="Transfer List" textFill="WHITE">
+                            <padding>
+                                <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="Noto Sans Regular" size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="logoutButton" mnemonicParsing="false" styleClass="logout-btn" text="Logout ⏻" textFill="WHITE">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="Noto Sans Regular" size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <HBox.margin>
                         <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-         </padding>
-      </HBox>
-      <VBox fx:id="body" styleClass="body" VBox.vgrow="ALWAYS">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </VBox>
-   </children>
-</VBox>
+                    </HBox.margin>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+            </padding>
+        </HBox>
+        <VBox fx:id="body" styleClass="body" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </VBox>
+    </children>
+</fx:root>

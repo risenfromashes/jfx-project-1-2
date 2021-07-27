@@ -3,7 +3,7 @@ package edu.buet.data;
 import java.io.Serializable;
 import java.util.Map;
 
-public class Player implements Serializable{
+public class Player implements Serializable {
 
     public enum Foot {
         LEFT, RIGHT;
@@ -30,6 +30,7 @@ public class Player implements Serializable{
     private final Currency value;
     private final String imageUrl;
     private Club club;
+    private TransferOffer transferOffer;
 
     public Player(int id,
                   String name,
@@ -59,6 +60,10 @@ public class Player implements Serializable{
         this.weeklySalary = weeklySalary;
         this.value = value;
         this.imageUrl = imageUrl;
+        this.transferOffer = null;
+    }
+    public Player clone() {
+        return new Player(id, name, altName, age, position, preferredFoot, club, country, height, weight, jerseyNumber, weeklySalary, value, imageUrl);
     }
 
     public Player(String line, Map<Integer, Club> clubs, Map<Integer, Country> countries) {
@@ -77,6 +82,7 @@ public class Player implements Serializable{
         this.weeklySalary = new Currency(props[11]);
         this.value = new Currency(props[12]);
         this.imageUrl = props[13];
+        this.transferOffer = null;
     }
 
     public String toString() {
@@ -137,6 +143,15 @@ public class Player implements Serializable{
     final public void setClub(Club club) {
         this.club = club;
     }
+    final public boolean hasTransfer() {
+        return transferOffer != null;
+    }
+    final protected void setTransfer(TransferOffer offer) {
+        this.transferOffer = offer;
+    }
+    final public TransferOffer getTransfer() {
+        return this.transferOffer;
+    }
     final public Country getCountry() {
         return this.country;
     }
@@ -159,7 +174,7 @@ public class Player implements Serializable{
         return this.imageUrl;
     }
     @Override
-    public boolean equals(Object other){
+    public boolean equals(Object other) {
         return id == ((Player)other).id;
     }
 }

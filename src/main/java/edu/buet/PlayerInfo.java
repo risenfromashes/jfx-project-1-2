@@ -2,7 +2,14 @@ package edu.buet;
 
 import java.io.IOException;
 
+import edu.buet.data.Club;
+import edu.buet.data.Currency;
 import edu.buet.data.Player;
+import edu.buet.messages.TransferOfferRequest;
+import edu.buet.messages.TransferOfferResponse;
+import edu.buet.messages.TransferRequest;
+import edu.buet.messages.TransferResponse;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -50,16 +57,29 @@ public class PlayerInfo extends VBox {
     @FXML
     private Button backButton;
     @FXML
+    private Spinner<Double> feeSpinner;
+    @FXML
+    private HBox transferInfo;
+    @FXML
     private HBox transferBox;
     @FXML
-    private Spinner<Double> feeSpinner;
+    private Label transferFee;
+    @FXML
+    private VBox body;
 
     private Label[] positionLines = new Label[3];
 
     private Player player;
+    private Club club;
     private PlayerEntry entry;
 
-    public PlayerInfo(PlayerEntry entry) {
+    private BottomBar bottomBar;
+
+    private boolean transferPrompt;
+
+    public PlayerInfo(Club club, PlayerEntry entry, boolean transferPrompt) {
+        this.club = club;
+        this.transferPrompt = transferPrompt;
         this.entry = entry;
         this.player = entry.getPlayer();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("playerinfo.fxml"));
@@ -79,6 +99,7 @@ public class PlayerInfo extends VBox {
 
     @FXML
     void initialize() {
+        bottomBar = new BottomBar();
         positionLines[0] = positionLine0;
         positionLines[1] = positionLine1;
         positionLines[2] = positionLine2;
@@ -104,5 +125,82 @@ public class PlayerInfo extends VBox {
         flagView.setCache(true);
         imageView.setImage(entry.getPlayerImage());
         flagView.setImage(entry.getFlagImage());
+        if (player.hasTransfer()) {
+            transferInfo.setVisible(true);
+            transferFee.setText(player.getTransfer().getFee().getString());
+            if (player.getTransfer().getSellingClubId() == club.getId()) {
+                sellOrConfirmButton.setVisible(false);
+            } else {
+                transferBox.setVisible(false);
+                if (!transferPrompt) {
+                    sellOrConfirmButton.setText("Buy");
+                } else {
+                    sellOrConfirmButton.setText("Confirm");
+                }
+                sellOrConfirmButton.setVisible(true);
+            }
+        } else {
+            transferInfo.setVisible(false);
+            sellOrConfirmButton.setVisible(true);
+            if (!transferPrompt) {
+                sellOrConfirmButton.setText("Sell");
+                transferBox.setVisible(false);
+            } else {
+                sellOrConfirmButton.setText("Confirm");
+                transferBox.setVisible(true);
+            }
+        }
+        sellOrConfirmButton.onActionProperty().set( e -> {
+            if (transferPrompt) {
+                if (player.hasTransfer()) { //buy
+                    if (club.getBalance().getNumber() > player.getTransfer().getFee().getNumber()) {
+                        if (player.getTransfer().getSellingClubId() != club.getId()) {
+                            App.connect().thenAccept( s -> {
+                                s.sendNow(new TransferRequest(player.getId()), TransferResponse.class)
+                                .thenAccept( res -> {
+                                    Platform.runLater(()->{
+                                        if (res.success()) {
+                                            transferBox.setVisible(false);
+                                            sellOrConfirmButton.setVisible(false);
+                                            transferInfo.setVisible(false);
+                                        } else {
+                                            bottomBar.setMessage(BottomBar.Type.ERROR, res.getMessage());
+                                            bottomBar.show(body);
+                                        }
+                                    });
+                                });
+                            });
+                        }
+                    }
+                    else{
+                        bottomBar.setMessage(BottomBar.Type.WARNING, "Not enough budget");
+                        bottomBar.show(body);
+                    }
+                } else { //sell
+                    var fee = (float)(double)feeSpinner.getValue();
+                    App.connect().thenAccept( s -> {
+                        s.sendNow(new TransferOfferRequest(player.getId(), fee), TransferOfferResponse.class)
+                        .thenAccept( res -> {
+                            Platform.runLater(()->{
+                                if (res.success()) {
+                                    transferBox.setVisible(false);
+                                    sellOrConfirmButton.setVisible(false);
+                                    transferInfo.setVisible(true);
+                                    transferFee.setText(new Currency(fee).getString());
+                                    entry.sellOrBuyButton().setVisible(false);
+                                } else {
+                                    bottomBar.setMessage(BottomBar.Type.ERROR, res.getMessage());
+                                    bottomBar.show(body);
+                                }
+                            });
+                        });
+                    });
+                }
+            } else {
+                transferPrompt = true;
+                sellOrConfirmButton.setText("Confirm");
+                transferBox.setVisible(true);
+            }
+        });
     }
 }
