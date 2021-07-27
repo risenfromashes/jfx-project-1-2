@@ -2,6 +2,7 @@ package edu.buet.net;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -60,8 +61,10 @@ class GenericMessage<R> extends Message {
 }
 
 public abstract class NetworkProvider {
-    protected Consumer<SocketHandle> connectionHandler = null;
+    protected Consumer<SocketHandle> connectionHandler;
+    protected Consumer<SocketHandle> closeHandler;
     protected Map<Class<?>, Handler<?>> handlers;
+    protected Map<Long, SocketHandle> sockets;
     protected ExecutorService executor;
     protected class Handler<T> {
         Class<T> type;
@@ -94,7 +97,7 @@ public abstract class NetworkProvider {
         public void write() throws IOException {
             while (socket.queuedMessageCount() > 0) {
                 var messageout = socket.dequeMessage();
-                socket.out.writeObject(messageout.toMessage());
+                socket.out.writeUnshared(messageout.toMessage());
                 if (messageout.isResponseVoid()) {
                     socket.complete(messageout);
                     socket.removeSession(messageout.sessionId);
@@ -123,11 +126,17 @@ public abstract class NetworkProvider {
     }
     public NetworkProvider() {
         handlers = new ConcurrentHashMap<>();
+        sockets = new ConcurrentHashMap<>();
         executor = Executors.newCachedThreadPool();
+        connectionHandler = s -> sockets.put(s.getId(), s);
+        closeHandler = s -> sockets.remove(s.getId());
     }
     public synchronized <T extends Serializable>  NetworkProvider on(Class<T> type, BiConsumer<T, SocketHandle> handler) {
-        var h = new Handler<T>(type, handler );
+        var h = new Handler<T>(type, handler);
         handlers.put(type, h);
         return this;
+    }
+    public synchronized Collection<SocketHandle> getSockets(){
+        return sockets.values();
     }
 }

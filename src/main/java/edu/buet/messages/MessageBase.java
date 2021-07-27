@@ -19,11 +19,11 @@ abstract class MessageBase<T> implements Serializable {
         this.body = null;
     }
 
-    T get() {
+    public T get() {
         return body;
     }
 
-    boolean success() {
+    public boolean success() {
         return success;
     }
 }

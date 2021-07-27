@@ -1,3 +1,3 @@
 package edu.buet.messages;
-class ClubListRequest extends MessageBase<Void> {
+public class ClubListRequest extends MessageBase<Void> {
 }

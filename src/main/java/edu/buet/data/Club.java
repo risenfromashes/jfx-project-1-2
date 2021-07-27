@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Club implements Serializable{
-//id;name;value;budget;logo-link;
+//id;name;value;balance;logo-link;
     private final int id;
     private final String name;
     private final String altName;
     private final Currency value;
-    private final Currency budget;
     private final String logoUrl;
-
     private final List<Player> players;
 
-    public Club(int id, String name, String altName, Currency value, Currency budget, String logoUrl){
+    private Currency balance;
+
+    public Club(int id, String name, String altName, Currency value, Currency balance, String logoUrl){
         this.id = id;
         this.name = name;
         this.altName = altName;
         this.value = value;
-        this.budget = budget;
+        this.balance = balance;
         this.logoUrl = logoUrl;
         this.players = new ArrayList<>();
     }
@@ -30,7 +30,7 @@ public class Club implements Serializable{
         this.name = props[1];
         this.altName = props[2];
         this.value = new Currency(props[3]);
-        this.budget = new Currency(props[4]);
+        this.balance = new Currency(props[4]);
         this.logoUrl = props[5];
         this.players = new ArrayList<>();
     }
@@ -55,14 +55,14 @@ public class Club implements Serializable{
     final public Currency getValue(){
         return value;
     }
-    final public Currency getBudget(){
-        return budget;
+    final public Currency getBalance(){
+        return balance;
     }
     final public String getLogoUrl(){
         return logoUrl;
     }
     public String toString() {
-//id;name;alt-name;value;budget;logo-link;
+//id;name;alt-name;value;balance;logo-link;
         var sb = new StringBuilder();
         sb.append(id);
         sb.append(';');
@@ -72,10 +72,14 @@ public class Club implements Serializable{
         sb.append(';');
         sb.append(value.getString());
         sb.append(';');
-        sb.append(budget.getString());
+        sb.append(balance.getString());
         sb.append(';');
         sb.append(logoUrl);
         sb.append(';');
         return sb.toString();
+    }
+    @Override
+    public boolean equals(Object other){
+        return id == ((Club)other).id;
     }
 }

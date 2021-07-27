@@ -1,4 +1,4 @@
-package edu.buet.net; 
+package edu.buet.net;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -12,8 +12,7 @@ public class Client extends NetworkProvider {
             super(socket);
         }
         public void run() {
-            if (connectionHandler != null)
-                connectionHandler.accept(socket);
+            connectionHandler.accept(socket);
             try {
                 while (!Thread.interrupted()) {
                     try {
@@ -28,6 +27,7 @@ public class Client extends NetworkProvider {
                 }
             } catch (IOException e) {
                 System.out.println("Connection rejected. Closing: " + e.getMessage());
+                closeHandler.accept(socket);
                 try {
                     socket.close();
                 } catch (IOException ex) {
@@ -44,7 +44,11 @@ public class Client extends NetworkProvider {
         return this;
     }
     public Client onConnect(Consumer<SocketHandle> handler) {
-        this.connectionHandler = handler;
+        this.connectionHandler = this.connectionHandler.andThen(handler);
+        return this;
+    }
+    public Client onClose(Consumer<SocketHandle> handler) {
+        this.closeHandler = this.closeHandler.andThen(handler);
         return this;
     }
     public SocketHandle connect(InetAddress address, int port) throws IOException {

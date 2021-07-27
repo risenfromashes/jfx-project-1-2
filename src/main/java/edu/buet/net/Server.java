@@ -1,4 +1,4 @@
-package edu.buet.net; 
+package edu.buet.net;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -12,8 +12,7 @@ public class Server extends NetworkProvider {
             super(socket);
         }
         public void run() {
-            if (connectionHandler != null)
-                connectionHandler.accept(socket);
+            connectionHandler.accept(socket);
             try {
                 while (!Thread.interrupted()) {
                     try {
@@ -26,6 +25,7 @@ public class Server extends NetworkProvider {
                 }
             } catch (IOException e) {
                 System.out.println("Connection rejected closing: " + e.getMessage());
+                closeHandler.accept(socket);
                 try {
                     socket.close();
                 } catch (IOException ex) {
@@ -42,20 +42,30 @@ public class Server extends NetworkProvider {
         return this;
     }
     public Server onAccept(Consumer<SocketHandle> handler) {
-        this.connectionHandler = handler;
+        this.connectionHandler = this.connectionHandler.andThen(handler);
         return this;
     }
-    public void run(int port) throws IOException{
-        ServerSocket listener = new ServerSocket(3001);
-        try {
-            while (!Thread.interrupted()) {
-                var socket = new SocketHandle(listener.accept());
-                executor.submit(new Worker(socket));
+    public Server onClose(Consumer<SocketHandle> handler) {
+        this.closeHandler = this.closeHandler.andThen(handler);
+        return this;
+    }
+    public void run(int port) throws IOException {
+        ServerSocket listener = new ServerSocket(port);
+        executor.submit(()-> {
+            try {
+                while (!Thread.interrupted()) {
+                    var socket = new SocketHandle(listener.accept());
+                    executor.submit(new Worker(socket));
+                }
+            } catch (IOException e) {
+                System.out.println("Socket prematurely closed: " + e.getMessage());
+            } finally {
+                try {
+                    listener.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (IOException e) {
-            System.out.println("Socket prematurely closed: " + e.getMessage());
-        } finally {
-            listener.close();
-        }
+        });
     }
 }

@@ -26,6 +26,13 @@ public class SocketHandle {
     protected ObjectInputStream in;
     private Queue<GenericMessage<?>> sendQueue;
     private Map<Long, GenericMessage<?>> sessions;
+    private Object attachment;
+    public Object getAttachment(){
+        return attachment;
+    }
+    public void setAttachment(Object obj){
+        this.attachment = obj;
+    }
     public SocketHandle(InetAddress address, int port) throws IOException {
         this(new Socket(address, port));
     }
@@ -39,6 +46,8 @@ public class SocketHandle {
         this.in = new ObjectInputStream(socket.getInputStream());
         this.sendQueue = new ConcurrentLinkedQueue<>();
         this.sessions = new ConcurrentHashMap<>();
+        this.attachment = null;
+        this.socket.setSoTimeout(1000);
     }
     public synchronized int queuedMessageCount() {
         return sendQueue.size();

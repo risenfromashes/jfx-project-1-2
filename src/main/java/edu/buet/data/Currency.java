@@ -16,6 +16,19 @@ public class Currency implements Serializable {
         this.number = number;
         this.str = toString(number);
     }
+    public void add(float other){
+        number += other;
+        str = toString(number);
+    }
+    public void add(Currency other){
+        add(other.number);
+    }
+    public void substract(float other){
+        add(-other);
+    }
+    public void substract(Currency other){
+        add(-other.number);
+    }
     public float getNumber() {
         return number;
     }

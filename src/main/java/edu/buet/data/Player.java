@@ -30,7 +30,6 @@ public class Player implements Serializable{
     private final Currency value;
     private final String imageUrl;
     private Club club;
-    private TransferOffer transferOffer;
 
     public Player(int id,
                   String name,
@@ -60,7 +59,6 @@ public class Player implements Serializable{
         this.weeklySalary = weeklySalary;
         this.value = value;
         this.imageUrl = imageUrl;
-        this.transferOffer = null;
     }
 
     public Player(String line, Map<Integer, Club> clubs, Map<Integer, Country> countries) {
@@ -115,13 +113,6 @@ public class Player implements Serializable{
         return sb.toString();
     }
 
-    final public void setTransferOffer(TransferOffer transfer){
-        this.transferOffer = transfer;
-    }
-    final public TransferOffer getTransferOffer(){
-        return this.transferOffer;
-    }
-
     final public int getId() {
         return this.id;
     }
@@ -166,5 +157,9 @@ public class Player implements Serializable{
     }
     final public String getImageUrl() {
         return this.imageUrl;
+    }
+    @Override
+    public boolean equals(Object other){
+        return id == ((Player)other).id;
     }
 }
