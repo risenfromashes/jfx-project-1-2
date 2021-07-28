@@ -16,10 +16,12 @@ The project is built using Apache Maven.
 Download [JDK 11 or later](http://jdk.java.net/) for your operating system.
 Make sure `JAVA_HOME` is properly set to the JDK installation directory. 
 
-Install Maven and add to path.
+Install [Maven](https://maven.apache.org/install.html) and add to path.
 
 
 ### Build
+
+From project root run
 
     mvn compile package
 
