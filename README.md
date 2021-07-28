@@ -3,7 +3,7 @@
 
 The app is a simple client/server football club management system. A server hosts a database of about 20k player information (collected from [fifacm](https://www.fifacm.com/)). Clients login as clubs and can search and view the details and information about the players in the club. Additionally, players can be bought or sold across clients connected to the same server.
 
-![screenshot](https://github.com/risenfromashes/jfx-project-1-2/blob/master/screenshots/s1.jpg?raw=true)
+![screenshot](https://github.com/risenfromashes/jfx-project-1-2/blob/master/screenshots/s1.png?raw=true)
 
 ### Prebuilt
 
