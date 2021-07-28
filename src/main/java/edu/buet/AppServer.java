@@ -22,6 +22,7 @@ import edu.buet.net.Server;
 
 public class AppServer {
     public static void main(String[] args) {
+        int port = args.length > 0 ? Integer.parseInt(args[0]) : 3001;
         try {
             var db = PlayerDatabase.parseFile("data/");
             var connectedClubs = new TreeSet<Integer>();
@@ -138,7 +139,7 @@ public class AppServer {
                     connectedClubs.remove((Integer)attch);
                     System.out.println("Client Disconnected");
                 }
-            }).run(3001);
+            }).run(port);
         } catch (IOException e) {
             System.out.println("Couldn't create server");
         }

@@ -19,6 +19,8 @@ public class App extends Application {
 
     private static Scene scene;
     private static Client client;
+    private static InetAddress address;
+    private static int port;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,17 +43,29 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     static CompletableFuture<SocketHandle> connect() {
-        try {
-            return client.connectAsync(InetAddress.getLocalHost(), 3001);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        return client.connectAsync(address, port);
     }
     static Client getClient() {
         return client;
     }
     public static void main(String[] args) {
+        try {
+            if (args.length > 0) {
+                var props = args[0].split(":");
+                address = InetAddress.getByName(props[0].trim());
+                port = Integer.parseInt(props[1]);
+            } else {
+                address = InetAddress.getLocalHost();
+                port = 3001;
+            }
+        } catch (IOException e) {
+            try {
+                address = InetAddress.getLocalHost();
+                port = 3001;
+            } catch (IOException err) {
+                throw new RuntimeException(e);
+            }
+        }
         client = new Client();
         launch();
         System.exit(0);
