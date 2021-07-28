@@ -5,6 +5,7 @@ import java.io.IOException;
 import edu.buet.data.Club;
 import edu.buet.data.Currency;
 import edu.buet.data.Player;
+import edu.buet.data.TransferOffer;
 import edu.buet.messages.TransferOfferRequest;
 import edu.buet.messages.TransferOfferResponse;
 import edu.buet.messages.TransferRequest;
@@ -182,11 +183,13 @@ public class PlayerInfo extends VBox {
                         .thenAccept( res -> {
                             Platform.runLater(()->{
                                 if (res.success()) {
+                                    var cf = new Currency(fee);
                                     transferBox.setVisible(false);
                                     sellOrConfirmButton.setVisible(false);
                                     transferInfo.setVisible(true);
-                                    transferFee.setText(new Currency(fee).getString());
+                                    transferFee.setText(cf.getString());
                                     entry.sellOrBuyButton().setVisible(false);
+                                    player.setTransfer(new TransferOffer(player.getId(), club.getId(), cf));
                                 } else {
                                     bottomBar.setMessage(BottomBar.Type.ERROR, res.getMessage());
                                     bottomBar.show(body);

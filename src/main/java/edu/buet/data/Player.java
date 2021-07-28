@@ -146,7 +146,7 @@ public class Player implements Serializable {
     final public boolean hasTransfer() {
         return transferOffer != null;
     }
-    final protected void setTransfer(TransferOffer offer) {
+    final public void setTransfer(TransferOffer offer) {
         this.transferOffer = offer;
     }
     final public TransferOffer getTransfer() {
