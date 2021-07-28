@@ -335,13 +335,15 @@ public class Primary extends VBox {
             s.sendNow(new TransferListRequest(), TransferListResponse.class)
             .thenAccept( res -> {
                 if (res.success()) {
-                    for (var player : res.get()) {
-                        if (player.getClub().getId() != club.getId()) {
-                            if (!containsPlayer(transferList, player)) {
-                                transferList.add(generateEntry(player, true));
+                    Platform.runLater( ()-> {
+                        for (var player : res.get()) {
+                            if (player.getClub().getId() != club.getId()) {
+                                if (!containsPlayer(transferList, player)) {
+                                    transferList.add(generateEntry(player, true));
+                                }
                             }
                         }
-                    }
+                    });
                 } else {
                     Platform.runLater( ()-> {
                         bottomBar.setMessage(BottomBar.Type.WARNING, "Couldn't get transfer list, " + res.getMessage());
