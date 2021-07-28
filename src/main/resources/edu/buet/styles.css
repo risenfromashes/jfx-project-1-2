@@ -549,7 +549,7 @@
     -fx-font-family: 'noto-sans';
     -fx-text-fill: white;
     -fx-font-size: 16px;
-    -fx-font-weight: normal;
+    -fx-font-weight: bold;
 }
 
 .botton-bar-warning {
@@ -560,7 +560,7 @@
     -fx-font-family: 'noto-sans';
     -fx-text-fill: white;
     -fx-font-size: 16px;
-    -fx-font-weight: normal;
+    -fx-font-weight: bold;
 }
 
 .botton-bar-error {

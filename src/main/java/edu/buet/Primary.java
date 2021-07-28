@@ -2,10 +2,15 @@ package edu.buet;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import edu.buet.data.Club;
+import edu.buet.data.Country;
+import edu.buet.data.Currency;
 import edu.buet.data.Player;
+import edu.buet.messages.LogoutRequest;
+import edu.buet.messages.LogoutResponse;
 import edu.buet.messages.NotifyTransfer;
 import edu.buet.messages.TransferListRequest;
 import edu.buet.messages.TransferListResponse;
@@ -26,6 +31,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class Primary extends VBox {
+
+    enum NavMenu { PLAYERS, TRANSFERS, COUNTRIES }
+
+    NavMenu currentMenu = NavMenu.PLAYERS;
+
     private Club club;
     private Image clubLogoImage;
 
@@ -33,6 +43,8 @@ public class Primary extends VBox {
     private Label clubName;
     @FXML
     private Label clubBalance;
+    @FXML
+    private Label totalSalaryLabel;
     @FXML
     private ImageView clubLogo;
     @FXML
@@ -42,14 +54,17 @@ public class Primary extends VBox {
     @FXML
     private Button logoutButton;
     @FXML
+    private Button countriesButton;
+    @FXML
     private VBox body;
-
     private Parent header, search;
     private PlayerListHeaderController headerController;
     private PlayerSearchController searchController;
     private ListView<PlayerEntry> playerListView;
     private ObservableList<PlayerEntry> playerList;
     private ObservableList<PlayerEntry> transferList;
+    private Currency totalSalary;
+
 
     private BottomBar bottomBar;
 
@@ -89,29 +104,69 @@ public class Primary extends VBox {
         showHeader(false);
         showPlayers();
 
+        totalSalary = new Currency(0.f);
+        for ( var p : club.getPlayers())
+            totalSalary.add(p.getWeeklySalary().getNumber() * 52);
+        totalSalaryLabel.setText(totalSalary.getString());
 
         playersButton.onActionProperty().set(e -> {
-            showTransfer = false;
-            toggleButtonStyles();
-            body.getChildren().clear();
-            showHeader(false);
-            showPlayers();
+            showMenu(NavMenu.PLAYERS);
         });
 
         transferListButton.onActionProperty().set(e -> {
-            showTransfer = true;
-            toggleButtonStyles();
-            body.getChildren().clear();
+            showMenu(NavMenu.TRANSFERS);
+        });
+
+        countriesButton.onActionProperty().set(e -> {
+            showMenu(NavMenu.COUNTRIES);
+        });
+
+        logoutButton.onActionProperty().set(e -> {
+            App.getClient().clearHandlers();
+            App.connect().thenAccept( s -> {
+                System.out.println("Logout button pressed");
+                s.sendNow(new LogoutRequest(), LogoutResponse.class).thenAccept( res ->{
+                    Platform.runLater(()->{
+                        try {
+                            App.setRoot("loginscreen");
+                        } catch (IOException err) {
+                            throw new RuntimeException(err);
+                        }
+                    });
+                });
+            });
+        });
+
+    }
+    private void toggleButtonStyles() {
+        playersButton.getStyleClass().clear();
+        playersButton.getStyleClass().add("navbar-btn" + (currentMenu == NavMenu.PLAYERS  ? "-active" : ""));
+        transferListButton.getStyleClass().clear();
+        transferListButton.getStyleClass().add("navbar-btn" + (currentMenu == NavMenu.TRANSFERS ? "-active" : ""));
+        countriesButton.getStyleClass().clear();
+        countriesButton.getStyleClass().add("navbar-btn" + (currentMenu == NavMenu.COUNTRIES ? "-active" : ""));
+    }
+
+    private void showMenu(NavMenu menu) {
+        this.currentMenu = menu;
+        toggleButtonStyles();
+        body.getChildren().clear();
+        switch (currentMenu) {
+        case PLAYERS:
+            showHeader(false);
+            showPlayers();
+            break;
+        case TRANSFERS:
             showHeader(false);
             showTransferPlayers();
-        });
+            break;
+        case COUNTRIES:
+            populateCountries();
+            break;
+        }
     }
-    private boolean showTransfer = false;
-    private void toggleButtonStyles() {
-        transferListButton.getStyleClass().clear();
-        transferListButton.getStyleClass().add("navbar-btn" + (showTransfer ? "-active" : ""));
-        playersButton.getStyleClass().clear();
-        playersButton.getStyleClass().add("navbar-btn" + (!showTransfer ? "-active" : ""));
+    private void showMenu() {
+        showMenu(currentMenu);
     }
 
     private void showInfo(PlayerEntry entry, boolean transferOrBuy) {
@@ -119,12 +174,7 @@ public class Primary extends VBox {
         var p = new PlayerInfo(club, entry, transferOrBuy);
         p.backButtonClickedProperty().set( ev -> {
             if (ev.getButton() == MouseButton.PRIMARY) {
-                showHeader(true);
-                if (showTransfer) {
-                    showTransferPlayers();
-                } else {
-                    showPlayers();
-                }
+                showMenu();
             }
         });
         body.getChildren().add(p);
@@ -200,6 +250,7 @@ public class Primary extends VBox {
         searchController.backButtonClickedProperty().set( ev -> {
             if (ev.getButton() == MouseButton.PRIMARY) {
                 showHeader(true);
+                playerListView.setItems(playerList);
             }
         });
     }
@@ -260,6 +311,8 @@ public class Primary extends VBox {
                     } else { //buy
                         if (!containsPlayer(playerList, player)) {
                             playerList.add(generateEntry(player, false));
+                            totalSalary.add(player.getWeeklySalary().getNumber() * 52);
+                            totalSalaryLabel.setText(totalSalary.getString());
                         }
                         if (containsPlayer(transferList, player)) {
                             removePlayer(transferList, player);
@@ -268,7 +321,11 @@ public class Primary extends VBox {
                 } else if (o.op == NotifyTransfer.Op.REMOVE) {
                     var player = o.get();
                     removePlayer(transferList, player);
-                    removePlayer(playerList, player);
+                    if (containsPlayer(playerList, player)) {
+                        removePlayer(playerList, player);
+                        totalSalary.substract(player.getWeeklySalary().getNumber() * 52);
+                        totalSalaryLabel.setText(totalSalary.getString());
+                    }
                 }
                 club.getBalance().add(o.balanceDelta);
                 clubBalance.setText(club.getBalance().getString());
@@ -299,5 +356,23 @@ public class Primary extends VBox {
                 return null;
             });
         });
+    }
+    private void populateCountries() {
+        var countryList = new ListView<CountryEntry>();
+        VBox.setVgrow(countryList, Priority.ALWAYS);
+        playerListView.setMaxHeight(Double.MAX_VALUE);
+        var m1 = new HashMap<Integer, Integer>();
+        var m2 = new HashMap<Integer, Country>();
+        playerList.forEach(p -> {
+            var c = p.getPlayer().getCountry();
+            int id = c.getId();
+            int n = m1.get(id) != null ? m1.get(id) : 0;
+            m1.put(id, n + 1);
+            m2.put(id, c);
+        });
+        m1.forEach( (i, n) -> {
+            countryList.getItems().add(new CountryEntry(m2.get(i), n));
+        });
+        body.getChildren().add(countryList);
     }
 }

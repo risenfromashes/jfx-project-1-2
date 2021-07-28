@@ -121,6 +121,7 @@ public class AppServer {
                     var clubId = (Integer)attch;
                     if (connectedClubs.contains(clubId)) {
                         connectedClubs.remove(clubId);
+                        s.setAttachment(null);
                         s.send(LogoutResponse.successMessage());
                     } else {
                         s.send(LogoutResponse.errorMessage("Not logged in"));

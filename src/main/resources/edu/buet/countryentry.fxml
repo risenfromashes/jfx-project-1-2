@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<fx:root alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" stylesheets="@styles.css" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" styleClass="list-player-entry" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox alignment="CENTER_LEFT" style="0: 0;" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fx:id="flag" fitHeight="37.5" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="countryLabel" text="Argentina" wrapText="true">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" style="0: 0;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="countLabel" text="34" />
+               </children>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></HBox>
+   </children>
+   <padding>
+      <Insets left="10.0" />
+   </padding>
+</fx:root>

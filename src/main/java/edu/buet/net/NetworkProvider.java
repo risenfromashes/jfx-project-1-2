@@ -89,7 +89,7 @@ public abstract class NetworkProvider {
         }
         return null;
     }
-    public void clearHandlers() {
+    public synchronized void clearHandlers() {
         handlers.clear();
     }
     protected abstract class Worker implements Runnable {

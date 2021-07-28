@@ -28,19 +28,45 @@
                         <Insets left="15.0" right="15.0" />
                     </HBox.margin>
                 </Label>
-                <Label fx:id="clubBalance" minWidth="-Infinity" text="€180.5M" textFill="WHITE">
-                    <font>
+            <VBox alignment="CENTER">
+               <children>
+                      <Label fx:id="clubBalance" minWidth="-Infinity" text="€180.5M" textFill="WHITE">
+                          <font>
+                              <Font name="Noto Sans Bold" size="22.0" />
+                          </font>
+                      </Label>
+                  <Label fx:id="clubBalance2" minWidth="-Infinity" text="Balance" textFill="WHITE">
+                     <font>
+                        <Font name="Noto Sans Regular" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="35.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label fx:id="totalSalaryLabel" minWidth="-Infinity" text="€180.5M" textFill="WHITE">
+                     <font>
                         <Font name="Noto Sans Bold" size="22.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets left="15.0" right="15.0" />
-                    </HBox.margin>
-                </Label>
+                     </font>
+                  </Label>
+                  <Label fx:id="clubBalance21" minWidth="-Infinity" text="Total Salary" textFill="WHITE">
+                     <font>
+                        <Font name="Noto Sans Regular" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="35.0" />
+               </HBox.margin>
+            </VBox>
                 <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
                         <Button fx:id="playersButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="navbar-btn-active" text="Players" textFill="WHITE">
                             <HBox.margin>
-                                <Insets left="15.0" />
+                                <Insets />
                             </HBox.margin>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -57,9 +83,20 @@
                                 <Font name="Noto Sans Regular" size="18.0" />
                             </font>
                             <HBox.margin>
-                                <Insets right="15.0" />
+                                <Insets />
                             </HBox.margin>
                         </Button>
+                  <Button fx:id="countriesButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="50.0" styleClass="navbar-btn" text="Countries" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Noto Sans Regular" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
                         <Button fx:id="logoutButton" mnemonicParsing="false" styleClass="logout-btn" text="Logout ⏻" textFill="WHITE">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

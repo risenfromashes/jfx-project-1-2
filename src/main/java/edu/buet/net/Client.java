@@ -61,11 +61,13 @@ public class Client extends NetworkProvider {
         return socket;
     }
     public CompletableFuture<SocketHandle> connectAsync(InetAddress address, int port, boolean newSocket, boolean retry) {
+        System.out.println("trying to connect");
         var future = new CompletableFuture<SocketHandle>();
         executor.submit(()-> {
             if (!newSocket) {
                 for (var socket : sockets.values()) {
                     if (socket.hasSameAddress(address, port)) {
+                        System.out.println("prev socket found");
                         future.complete(socket);
                         return;
                     }
@@ -74,10 +76,13 @@ public class Client extends NetworkProvider {
             do {
                 try {
                     var socket = connect(address, port);
+                    System.out.println("Connected");
                     future.complete(socket);
-                    return;
+                    break;
                 } catch (IOException e) {
-                    continue;
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException err) {}
                 }
             } while (!Thread.interrupted() && retry);
         });
