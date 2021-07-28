@@ -1,5 +1,5 @@
  
-# Javafx term project
+# Javafx Client/Server Football Club Database Manager Project
 
 The project is built using Apache Maven.
 
@@ -19,7 +19,7 @@ Install Maven and add to path.
     java -jar jfx-project-1-2.jar --server
     
 ### Run Client
-
-    java -jar jfx-project-1-2.jar --server
+    cd build/
+    java -jar jfx-project-1-2.jar
     
 Or you can just execute the jar normally.
