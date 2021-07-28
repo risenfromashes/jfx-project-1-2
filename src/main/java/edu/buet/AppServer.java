@@ -75,11 +75,7 @@ public class AppServer {
                                 socket.notify(NotifyTransfer.addMessage(player, 0.f));
                             }
                         }
-                        try {
-                            db.writeToFile("data/");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        db.writeToFile("data/");
                     } else {
                         s.send(TransferOfferResponse.errorMessage("Player already has transfer offer"));
                     }
@@ -113,11 +109,7 @@ public class AppServer {
                                 }
                             }
                         }
-                        try {
-                            db.writeToFile("data/");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        db.writeToFile("data/");
                     } else {
                         s.send(TransferResponse.errorMessage("Invalid transfer request or player already transferred"));
                     }

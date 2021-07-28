@@ -49,7 +49,7 @@ public class PlayerDatabase {
         }
         return db;
     }
-    public synchronized void writeToFile(String dir) throws IOException {
+    public synchronized void writeToFile(String dir) {
         var fs = FileSystems.getDefault();
         try {
             Files.write(fs.getPath(dir, "countries.txt"), countries.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
@@ -57,9 +57,7 @@ public class PlayerDatabase {
             Files.write(fs.getPath(dir, "players.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
             Files.write(fs.getPath(dir, "transfers.txt"), transfers.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
         } catch (Exception e) {
-            e.printStackTrace();
         }
-        System.out.println("wrote to file");
     }
     public synchronized Player getPlayer(int id) {
         return players.get(id);
