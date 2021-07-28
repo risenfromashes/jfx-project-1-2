@@ -198,7 +198,8 @@ public class PlayerInfo extends VBox {
             } else {
                 transferPrompt = true;
                 sellOrConfirmButton.setText("Confirm");
-                transferBox.setVisible(true);
+                if (!player.hasTransfer())
+                    transferBox.setVisible(true);
             }
         });
     }
