@@ -2,3 +2,6 @@ target/
 build/
 *.sh
 *.zip
+.project
+.classpath
+.settings/
