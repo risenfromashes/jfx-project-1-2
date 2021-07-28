@@ -19,7 +19,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox fx:id="nameBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" styleClass="list-header-btn-middle">
+      <HBox fx:id="nameBox" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" styleClass="list-header-btn-middle" HBox.hgrow="ALWAYS">
          <children>
             <Label text="Name" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
@@ -79,7 +79,7 @@
             </HBox>
          </children>
       </HBox>
-      <HBox fx:id="searchBox" alignment="CENTER_LEFT" prefHeight="50.0" styleClass="list-header-btn-last" HBox.hgrow="ALWAYS">
+      <HBox fx:id="searchBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="list-header-btn-last" HBox.hgrow="NEVER">
          <children>
             <Label text="Search" />
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">

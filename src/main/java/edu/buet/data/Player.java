@@ -100,7 +100,7 @@ public class Player implements Serializable {
         sb.append(';');
         sb.append(preferredFoot.toString());
         sb.append(';');
-        sb.append(club.getId());
+        sb.append(club != null ? club.getId() : 0);
         sb.append(';');
         sb.append(country.getId());
         sb.append(';');

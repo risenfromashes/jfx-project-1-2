@@ -51,12 +51,17 @@ public class PlayerDatabase {
     }
     public synchronized void writeToFile(String dir) throws IOException {
         var fs = FileSystems.getDefault();
-        Files.write(fs.getPath(dir, "countries.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
-        Files.write(fs.getPath(dir, "clubs.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
-        Files.write(fs.getPath(dir, "players.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
-        Files.write(fs.getPath(dir, "transfers.txt"), transfers.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
+        try {
+            Files.write(fs.getPath(dir, "countries.txt"), countries.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
+            Files.write(fs.getPath(dir, "clubs.txt"), clubs.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
+            Files.write(fs.getPath(dir, "players.txt"), players.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
+            Files.write(fs.getPath(dir, "transfers.txt"), transfers.values().stream().map(c -> c.toString()).collect(Collectors.toList()), cs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("wrote to file");
     }
-    public synchronized Player getPlayer(int id){
+    public synchronized Player getPlayer(int id) {
         return players.get(id);
     }
     public synchronized Club getClub(int id) {

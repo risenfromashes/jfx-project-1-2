@@ -2,6 +2,9 @@
      -fx-background-color: #252B2D;
  }
 
+
+
+ 
 .body {
     -fx-base:  #50595F;
     -fx-background-color: #50595F;
@@ -82,6 +85,8 @@
     -fx-border-style: solid;
     -fx-border-width: 0.5px;
     -fx-border-radius: 5px;
+    -fx-font-family: 'noto-sans';
+    -fx-font-size: 14px;
 }
 .logout-btn:hover {
     -fx-background-color: #C24242;
@@ -98,6 +103,8 @@
     -fx-background-radius: 0px;
     -fx-border-radius: 0px;
     -fx-border-width: 0px;
+    -fx-font-family: 'noto-sans';
+    -fx-font-size: 14px;
 }
 .navbar-btn:hover {
     -fx-background-color: #363C3F;
@@ -113,6 +120,9 @@
     -fx-background-radius: 0px;
     -fx-border-radius: 0px;
     -fx-border-width: 0px;
+    -fx-font-family: 'noto-sans';
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
 }
 .navbar-btn-active:hover{
     -fx-background-color: #363C3F;

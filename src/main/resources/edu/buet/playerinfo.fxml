@@ -273,7 +273,7 @@
                         </Label>
                         <Spinner fx:id="feeSpinner" editable="true" prefHeight="35.0" styleClass="player-transfer-spinner">
                             <valueFactory>
-                                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="8000" max="999999999" min="0" />
+                                <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="10000" max="999999999" min="0" />
                             </valueFactory>
                      <HBox.margin>
                         <Insets right="15.0" />

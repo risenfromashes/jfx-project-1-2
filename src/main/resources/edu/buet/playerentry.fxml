@@ -18,7 +18,7 @@
                   <Label fx:id="jerseyNumber" text="10" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="340.0" style="0: 0;">
+            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" style="0: 0;" HBox.hgrow="ALWAYS">
                <children>
                   <HBox fx:id="playerImagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" style="-fx-padding: 0px;" styleClass="player-img">
                      <children>
@@ -61,7 +61,7 @@
                   <Label fx:id="salaryOrFee" text="€560K" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="75.0" style="0: 0;" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" style="0: 0;" HBox.hgrow="NEVER">
                <children>
                   <Button fx:id="sellOrBuyButton" mnemonicParsing="false" styleClass="alt-btn" text="Sell 🞂">
                      <HBox.margin>

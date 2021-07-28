@@ -126,12 +126,12 @@ public class PlayerInfo extends VBox {
         imageView.setImage(entry.getPlayerImage());
         flagView.setImage(entry.getFlagImage());
         if (player.hasTransfer()) {
+            transferBox.setVisible(false);
             transferInfo.setVisible(true);
             transferFee.setText(player.getTransfer().getFee().getString());
             if (player.getTransfer().getSellingClubId() == club.getId()) {
                 sellOrConfirmButton.setVisible(false);
             } else {
-                transferBox.setVisible(false);
                 if (!transferPrompt) {
                     sellOrConfirmButton.setText("Buy");
                 } else {
@@ -171,8 +171,7 @@ public class PlayerInfo extends VBox {
                                 });
                             });
                         }
-                    }
-                    else{
+                    } else {
                         bottomBar.setMessage(BottomBar.Type.WARNING, "Not enough budget");
                         bottomBar.show(body);
                     }
