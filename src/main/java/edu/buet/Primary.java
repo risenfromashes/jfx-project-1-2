@@ -302,30 +302,32 @@ public class Primary extends VBox {
     private void populateTransferPlayers()  {
         App.getClient().on(NotifyTransfer.class, (o, s) -> {
             Platform.runLater(()->{
-                if (o.op == NotifyTransfer.Op.ADD) {
-                    var player = o.get();
-                    if (player.getClub().getId() != club.getId()) { //offer
-                        if (!containsPlayer(transferList, player)) {
-                            transferList.add(generateEntry(player, true));
-                        }
-                    } else { //buy
-                        if (!containsPlayer(playerList, player)) {
-                            playerList.add(generateEntry(player, false));
-                            totalSalary.add(player.getWeeklySalary().getNumber() * 52);
-                            totalSalaryLabel.setText(totalSalary.getString());
-                        }
-                        if (containsPlayer(transferList, player)) {
-                            removePlayer(transferList, player);
-                        }
+                var player = o.get();
+                switch (o.op) {
+                case ADD_PLAYER:
+                    if (!containsPlayer(playerList, player)) {
+                        playerList.add(generateEntry(player, false));
+                        totalSalary.add(player.getWeeklySalary().getNumber() * 52);
+                        totalSalaryLabel.setText(totalSalary.getString());
                     }
-                } else if (o.op == NotifyTransfer.Op.REMOVE) {
-                    var player = o.get();
-                    removePlayer(transferList, player);
+                    break;
+                case REMOVE_PLAYER:
                     if (containsPlayer(playerList, player)) {
                         removePlayer(playerList, player);
                         totalSalary.substract(player.getWeeklySalary().getNumber() * 52);
                         totalSalaryLabel.setText(totalSalary.getString());
                     }
+                    break;
+                case ADD_TRANSFER:
+                    if (!containsPlayer(transferList, player)) {
+                        transferList.add(generateEntry(player, true));
+                    }
+                    break;
+                case REMOVE_TRANSFER:
+                    if (containsPlayer(transferList, player)) {
+                        transferList.remove(generateEntry(player, true));
+                    }
+                    break;
                 }
                 club.getBalance().add(o.balanceDelta);
                 clubBalance.setText(club.getBalance().getString());

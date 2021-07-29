@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.buet</groupId>
     <artifactId>jfx-project-1-2</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,12 +91,12 @@
                         <configuration>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>project-classifier</shadedClassifierName>
-                            <!--<outputFile>build\client.jar</outputFile>-->
-                            <outputFile>build\server.jar</outputFile>
+                            <outputFile>build\client.jar</outputFile>
+                            <!--<outputFile>build\server.jar</outputFile>-->
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <!--<mainClass>edu.buet.Launcher</mainClass>-->
-                                    <mainClass>edu.buet.AppServer</mainClass>
+                                    <mainClass>edu.buet.Launcher</mainClass>
+                                    <!--<mainClass>edu.buet.AppServer</mainClass>-->
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -73,7 +73,7 @@ public class AppServer {
                             var clubId = socket.getAttachment();
                             if (clubId != null && connectedClubs.contains(clubId)) {
                                 System.out.println("Notifying transfer");
-                                socket.notify(NotifyTransfer.addMessage(player, 0.f));
+                                socket.notify(new NotifyTransfer(NotifyTransfer.Op.ADD_TRANSFER, player, 0.f));
                             }
                         }
                         db.writeToFile("data/");
@@ -94,6 +94,8 @@ public class AppServer {
                         var prevClub = player.getClub();
                         var club = db.getClub((Integer)attch);
                         player.setClub(club);
+                        club.addPlayer(player);
+                        prevClub.removePlayer(player);
                         prevClub.getBalance().add(offer.getFee());
                         club.getBalance().substract(offer.getFee());
                         s.send(TransferResponse.successMessage());
@@ -102,11 +104,12 @@ public class AppServer {
                             var clubId = socket.getAttachment();
                             if (clubId != null && connectedClubs.contains(clubId)) {
                                 if (clubId.equals(club.getId())) {
-                                    socket.notify(NotifyTransfer.addMessage(player, -offer.getFee().getNumber()));
+                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.ADD_PLAYER, player, -offer.getFee().getNumber()));
+                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.REMOVE_TRANSFER, player, -offer.getFee().getNumber()));
                                 } else if (clubId.equals(prevClub.getId())) {
-                                    socket.notify(NotifyTransfer.removeMessage(player, offer.getFee().getNumber()));
+                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.REMOVE_PLAYER, player, offer.getFee().getNumber()));
                                 } else {
-                                    socket.notify(NotifyTransfer.removeMessage(player, 0.f));
+                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.REMOVE_TRANSFER, player, 0.f));
                                 }
                             }
                         }

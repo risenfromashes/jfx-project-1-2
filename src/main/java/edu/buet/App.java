@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.util.concurrent.CompletableFuture;
 
@@ -51,9 +52,11 @@ public class App extends Application {
     public static void main(String[] args) {
         try {
             if (args.length > 0) {
-                var props = args[0].split(":");
-                address = InetAddress.getByName(props[0].trim());
+                var props = args[0].split("::");
+                address = Inet6Address.getByName(props[0]);
                 port = Integer.parseInt(props[1]);
+                System.out.println("Client connecting to: ");
+                System.out.println(props[0] + "-" + props[1]);
             } else {
                 address = InetAddress.getLocalHost();
                 port = 3001;

@@ -82,7 +82,8 @@ public class Client extends NetworkProvider {
                 } catch (IOException e) {
                     try {
                         Thread.sleep(200);
-                    } catch (InterruptedException err) {}
+                    } catch (InterruptedException err) {
+                    }
                 }
             } while (!Thread.interrupted() && retry);
         });
