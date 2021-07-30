@@ -7,7 +7,18 @@ The app is a simple client/server football club management system. A server host
 
 ### Prebuilt
 
-You can run the prebuilt cross-platform executable jars from the release.
+You can run the prebuilt cross-platform executable jars from the [release](https://github.com/risenfromashes/jfx-project-1-2/releases/download/0.0.2/jfx-project-1-2.zip).
+
+### Running over Network
+
+To run the server at a specified port, say 3001, run
+     
+     java -jar server.jar 3001
+   
+To make the client connect to a specified ip address and port, say 101.102.103.104 on port 99, run,
+
+    java -jar client.jar 101.102.103.104::99
+
 
 ### Building
 
