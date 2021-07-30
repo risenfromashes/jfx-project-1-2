@@ -72,8 +72,10 @@ public class AppServer {
                         for (var socket : server.getSockets()) {
                             var clubId = socket.getAttachment();
                             if (clubId != null && connectedClubs.contains(clubId)) {
-                                System.out.println("Notifying transfer");
-                                socket.notify(new NotifyTransfer(NotifyTransfer.Op.ADD_TRANSFER, player, 0.f));
+                                //System.out.println("Notifying transfer");
+                                if (!clubId.equals(attch)) { // don't add transfer to requesting club
+                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.ADD_TRANSFER, player, 0.f));
+                                }
                             }
                         }
                         db.writeToFile("data/");
