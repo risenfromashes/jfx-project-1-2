@@ -105,7 +105,7 @@ public class AppServer {
                             if (clubId != null && connectedClubs.contains(clubId)) {
                                 if (clubId.equals(club.getId())) {
                                     socket.notify(new NotifyTransfer(NotifyTransfer.Op.ADD_PLAYER, player, -offer.getFee().getNumber()));
-                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.REMOVE_TRANSFER, player, -offer.getFee().getNumber()));
+                                    socket.notify(new NotifyTransfer(NotifyTransfer.Op.REMOVE_TRANSFER, player, 0.f));
                                 } else if (clubId.equals(prevClub.getId())) {
                                     socket.notify(new NotifyTransfer(NotifyTransfer.Op.REMOVE_PLAYER, player, offer.getFee().getNumber()));
                                 } else {
