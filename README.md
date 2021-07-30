@@ -5,9 +5,9 @@ The app is a simple client/server football club management system. A server host
 
 ![screenshot](https://github.com/risenfromashes/jfx-project-1-2/blob/master/screenshots/s1.png?raw=true)
 
-### Prebuilt
+### Running the Program
 
-You can run the prebuilt cross-platform executable jars from the [release](https://github.com/risenfromashes/jfx-project-1-2/releases/download/0.0.2/jfx-project-1-2.zip).
+You can run the prebuilt cross-platform executable jars ([Download](https://github.com/risenfromashes/jfx-project-1-2/releases/download/0.0.2/jfx-project-1-2.zip)) from the [release](https://github.com/risenfromashes/jfx-project-1-2/releases/tag/0.0.2).
 
 ### Running over Network
 
