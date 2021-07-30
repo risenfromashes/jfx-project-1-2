@@ -53,7 +53,7 @@ public class App extends Application {
         try {
             if (args.length > 0) {
                 var props = args[0].split("::");
-                address = Inet6Address.getByName(props[0]);
+                address = InetAddress.getByName(props[0]);
                 port = Integer.parseInt(props[1]);
                 System.out.println("Client connecting to: ");
                 System.out.println(props[0] + "-" + props[1]);
