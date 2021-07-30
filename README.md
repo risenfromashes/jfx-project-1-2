@@ -28,9 +28,9 @@ From project root run
 ### Run Server
 
     cp data build/; cd build/
-    java -jar jfx-project-1-2.jar --server
+    java -jar client.jar --server
     
 ### Run Client
-    java -jar jfx-project-1-2.jar
+    java -jar client.jar
     
 Or you can just execute the jar by clicking (on windows).
